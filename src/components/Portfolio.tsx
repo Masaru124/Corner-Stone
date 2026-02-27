@@ -67,7 +67,7 @@ export default function Portfolio() {
   }
 
   return (
-    <section id="portfolio" className="py-20 sm:py-24 lg:py-32 bg-background">
+    <section id="portfolio" className="py-20 sm:py-24 lg:py-32" style={{backgroundColor: '#F8F8F6'}}>
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Section Header */}
         <motion.div
@@ -77,13 +77,13 @@ export default function Portfolio() {
           viewport={{ once: true }}
           className="text-center mb-16 sm:mb-20"
         >
-          <div className="text-teal font-medium text-sm tracking-wider uppercase mb-4">
+          <div className="font-medium text-sm tracking-wider uppercase mb-4" style={{color: '#369c82', letterSpacing: '0.35em'}}>
             Our Work
           </div>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-light text-primary leading-none mb-4">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-light leading-none mb-4" style={{color: '#111111', fontFamily: "'Cormorant Garamond', serif", fontWeight: '300', letterSpacing: '-0.02em'}}>
             Work That Speaks
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg max-w-2xl mx-auto" style={{color: '#444', fontWeight: '300', fontSize: '16px', lineHeight: '1.7'}}>
             Real brands. Real results. Every project built with purpose.
           </p>
         </motion.div>
@@ -97,21 +97,22 @@ export default function Portfolio() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: projectIndex * 0.2 }}
               viewport={{ once: true }}
-              className="bg-white rounded-lg overflow-hidden border border-cream/30"
+              className="bg-white rounded-lg overflow-hidden border"
+              style={{borderColor: '#D8D3CC'}}
             >
               {/* Project Header */}
-              <div className="bg-primary p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                <h3 className="text-3xl sm:text-4xl font-serif font-light text-white">
+              <div className="p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4" style={{backgroundColor: '#1F5144'}}>
+                <h3 className="text-3xl sm:text-4xl font-serif font-light text-white" style={{fontFamily: "'Cormorant Garamond', serif", fontWeight: '300'}}>
                   {project.title}
                 </h3>
-                <span className="text-white/60 text-sm font-medium tracking-wider uppercase">
+                <span className="text-sm font-medium tracking-wider uppercase" style={{color: 'rgba(255,255,255,0.45)'}}>
                   {project.type}
                 </span>
               </div>
 
               {/* Project Body */}
               <div className="p-6 sm:p-8">
-                <p className="text-gray-600 leading-relaxed mb-6">
+                <p className="leading-relaxed mb-6" style={{color: '#444', fontWeight: '300', fontSize: '15px'}}>
                   {project.description}
                 </p>
 
@@ -120,9 +121,10 @@ export default function Portfolio() {
                   {project.images.map((image, imageIndex) => (
                     <div
                       key={imageIndex}
-                      className="relative aspect-square bg-gray-100 rounded-lg overflow-hidden"
+                      className="relative aspect-square bg-gray-100 rounded-lg overflow-hidden border"
+                      style={{borderColor: '#D8D3CC', borderStyle: 'dashed'}}
                     >
-                      <div className="absolute inset-0 flex items-center justify-center text-gray-400 text-sm text-center p-4">
+                      <div className="absolute inset-0 flex items-center justify-center text-sm text-center p-4" style={{color: '#888'}}>
                         {image.alt}
                       </div>
                     </div>
@@ -134,7 +136,14 @@ export default function Portfolio() {
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-4 py-2 bg-cream/50 text-gray-600 text-xs font-medium tracking-wider uppercase rounded-full border border-cream/70"
+                      className="px-4 py-2 text-xs font-medium tracking-wider uppercase rounded-full border"
+                      style={{
+                        color: '#555',
+                        borderColor: '#D8D3CC',
+                        backgroundColor: '#F5F2EE',
+                        fontWeight: '500',
+                        letterSpacing: '0.12em'
+                      }}
                     >
                       {tag}
                     </span>
@@ -155,7 +164,8 @@ export default function Portfolio() {
         >
           <button
             onClick={() => scrollToSection('contact')}
-            className="text-primary font-medium text-lg hover:text-teal transition-colors inline-flex items-center gap-2"
+            className="text-lg font-medium hover:underline inline-flex items-center gap-2"
+            style={{color: '#111111'}}
           >
             Want results like these? Let's talk →
           </button>

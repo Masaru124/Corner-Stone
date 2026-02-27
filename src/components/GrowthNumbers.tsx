@@ -33,37 +33,52 @@ export default function GrowthNumbers() {
           viewport={{ once: true }}
           className="text-center mb-16 sm:mb-20"
         >
-          <div className="font-medium text-sm tracking-wider uppercase mb-4" style={{color: '#369c82'}}>
+          <div className="font-medium text-sm tracking-wider uppercase mb-4" style={{color: '#369c82', letterSpacing: '0.35em'}}>
             What You Can Expect
           </div>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-light text-white leading-none mb-6">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-light leading-none mb-6" style={{color: 'white', fontFamily: "'Cormorant Garamond', serif", fontWeight: '300', letterSpacing: '-0.02em'}}>
             Numbers Don't Lie
           </h2>
-          <p className="text-lg text-white/80 max-w-3xl mx-auto">
+          <p className="text-lg max-w-3xl mx-auto" style={{color: 'rgba(255,255,255,0.8)', fontWeight: '300'}}>
             Our campaigns are strategically designed to deliver measurable, scalable brand growth. 
             Based on structured campaign execution and industry benchmarks, brands working with us can expect:
           </p>
         </motion.div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4">
-          {stats.map((stat, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="bg-white/10 backdrop-blur-sm p-6 sm:p-8 text-center"
-            >
-              <div className="text-4xl sm:text-5xl lg:text-6xl font-serif font-light text-white mb-4 leading-none">
-                {stat.number}
-              </div>
-              <div className="text-white/70 text-sm leading-relaxed">
-                {stat.label}
-              </div>
-            </motion.div>
-          ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0" style={{gap: '2px'}}>
+          <div className="bg-white p-8 sm:p-8 text-center border" style={{borderColor: '#D8D3CC'}}>
+            <div className="text-4xl sm:text-5xl lg:text-6xl font-serif font-light leading-none mb-4" style={{color: '#1F5144', fontFamily: "'Cormorant Garamond', serif", fontWeight: '300', lineHeight: '1'}}>
+              {stats[0].number}
+            </div>
+            <div className="text-sm leading-relaxed" style={{color: '#666', fontWeight: '300', lineHeight: '1.5'}}>
+              {stats[0].label}
+            </div>
+          </div>
+          <div className="bg-white p-8 sm:p-8 text-center border" style={{borderColor: '#D8D3CC'}}>
+            <div className="text-4xl sm:text-5xl lg:text-6xl font-serif font-light leading-none mb-4" style={{color: '#1F5144', fontFamily: "'Cormorant Garamond', serif", fontWeight: '300', lineHeight: '1'}}>
+              {stats[1].number}
+            </div>
+            <div className="text-sm leading-relaxed" style={{color: '#666', fontWeight: '300', lineHeight: '1.5'}}>
+              {stats[1].label}
+            </div>
+          </div>
+          <div className="bg-white p-8 sm:p-8 text-center border" style={{borderColor: '#D8D3CC'}}>
+            <div className="text-4xl sm:text-5xl lg:text-6xl font-serif font-light leading-none mb-4" style={{color: '#1F5144', fontFamily: "'Cormorant Garamond', serif", fontWeight: '300', lineHeight: '1'}}>
+              {stats[2].number}
+            </div>
+            <div className="text-sm leading-relaxed" style={{color: '#666', fontWeight: '300', lineHeight: '1.5'}}>
+              {stats[2].label}
+            </div>
+          </div>
+          <div className="bg-white p-8 sm:p-8 text-center border" style={{borderColor: '#D8D3CC'}}>
+            <div className="text-4xl sm:text-5xl lg:text-6xl font-serif font-light leading-none mb-4" style={{color: '#1F5144', fontFamily: "'Cormorant Garamond', serif", fontWeight: '300', lineHeight: '1'}}>
+              {stats[3].number}
+            </div>
+            <div className="text-sm leading-relaxed" style={{color: '#666', fontWeight: '300', lineHeight: '1.5'}}>
+              {stats[3].label}
+            </div>
+          </div>
         </div>
 
         {/* Footnote */}
@@ -74,7 +89,7 @@ export default function GrowthNumbers() {
           viewport={{ once: true }}
           className="text-center mt-12"
         >
-          <p className="text-white/50 italic text-sm max-w-2xl mx-auto">
+          <p className="italic text-sm max-w-2xl mx-auto" style={{color: 'rgba(255,255,255,0.5)'}}>
             Projections based on structured campaign execution and industry performance benchmarks. 
             Results vary by industry and investment.
           </p>
