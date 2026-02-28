@@ -77,5 +77,5 @@ export default function SimpleTextReveal({
   }, [children, delay, duration, staggerDelay, start])
 
   const Element = as === 'span' ? 'span' : 'div'
-  return <Element ref={containerRef} className={className}>{children}</Element>
+  return <Element ref={containerRef as any} className={className}>{children}</Element>
 }
