@@ -18,6 +18,11 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   title: "Corner Stone Design & Media | Vision Made Visible",
   description: "The Studio Behind Brands That Get Noticed. Brand strategy, visual identity, social media management, and web development services.",
+  icons: {
+    icon: '/Logo Kit - CNRSTN/Cornerstone Icon Green.png',
+    shortcut: '/Logo Kit - CNRSTN/Cornerstone Icon Green.png',
+    apple: '/Logo Kit - CNRSTN/Cornerstone Icon Green.png',
+  },
 };
 
 export default function RootLayout({

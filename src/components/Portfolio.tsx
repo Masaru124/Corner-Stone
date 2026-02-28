@@ -10,10 +10,10 @@ const projects = [
     type: 'Brand Identity + Packaging',
     description: 'A premium non-alcoholic beverage brand inspired by exotic flavors from around the world. We built complete visual identity — logo, color system, product packaging, and social media presence.',
     images: [
-      { src: '/placeholder-climate-1.jpg', alt: 'Blue Mirage can - navy blue version' },
-      { src: '/placeholder-climate-2.jpg', alt: 'Blue Mirage can - green version' },
-      { src: '/placeholder-climate-3.jpg', alt: 'Lifestyle shot - person with drink' },
-      { src: '/placeholder-climate-4.jpg', alt: 'Color palette swatch' }
+      { src: '/Portfolio - CNRSTN/Climate/Drink Can Mockup (1).png', alt: 'Blue Mirage can - navy blue version' },
+      { src: '/Portfolio - CNRSTN/Climate/Drink Can Mockup.png', alt: 'Blue Mirage can - green version' },
+      { src: '/Portfolio - CNRSTN/Climate/Soda Can Mock-Up 1 (Free) by MassDream.png', alt: 'Lifestyle shot - person with drink' },
+      { src: '/Portfolio - CNRSTN/Climate/Screenshot 2026-02-27 at 10.55.04 PM.png', alt: 'Color palette swatch' }
     ],
     tags: ['Brand Identity', 'Packaging Design', 'Visual Direction', 'Content Design']
   },
@@ -23,23 +23,23 @@ const projects = [
     type: 'Brand Redesign',
     description: 'A full brand redesign for an Indian alkaline water brand and e-commerce platform. New logo, typography system, brand messaging, and digital presence — rebuilt from scratch.',
     images: [
-      { src: '/placeholder-gowaves-1.jpg', alt: 'GoWaves logo on dark background' },
-      { src: '/placeholder-gowaves-2.jpg', alt: 'App icon on phone screen mockup' },
-      { src: '/placeholder-gowaves-3.jpg', alt: 'Social media creative' },
-      { src: '/placeholder-gowaves-4.jpg', alt: 'New logo final version' }
+      { src: '/Portfolio - CNRSTN/Gowaves/Corner Stone - Service Guide (3).png', alt: 'GoWaves brand guide and logo presentation' },
+      { src: '/Portfolio - CNRSTN/Gowaves/Corner Stone - Service Guide (3).png', alt: 'GoWaves brand guidelines' },
+      { src: '/Portfolio - CNRSTN/Gowaves/Corner Stone - Service Guide (3).png', alt: 'GoWaves logo variations' },
+      { src: '/Portfolio - CNRSTN/Gowaves/Corner Stone - Service Guide (3).png', alt: 'GoWaves brand applications' }
     ],
     tags: ['Brand Redesign', 'Logo Design', 'App Identity', 'Brand Guidelines']
   },
   {
-    id: 'ommarble',
-    title: 'OM Marble & Granites',
-    type: 'Social Media Design',
+    id: 'socialmedia',
+    title: 'Social Media Design',
+    type: 'Content & Media Design',
     description: 'A luxury stone brand that needed content to match the quality of its products. We created a series of premium social media creatives — each post designed to stop the scroll and communicate luxury.',
     images: [
-      { src: '/placeholder-om-1.jpg', alt: 'Epitome of Luxury post - Jewel Onyx' },
-      { src: '/placeholder-om-2.jpg', alt: 'Crafted by Earth post' },
-      { src: '/placeholder-om-3.jpg', alt: 'Labradorite Blue product grid post' },
-      { src: '/placeholder-om-4.jpg', alt: 'Bold Blue Beautiful full bleed post' }
+      { src: '/Portfolio - CNRSTN/Social Media Posts /Copy of 01 (1).png', alt: 'Premium social media post design' },
+      { src: '/Portfolio - CNRSTN/Social Media Posts /Copy of 01 (2).png', alt: 'Elegant brand creative' },
+      { src: '/Portfolio - CNRSTN/Social Media Posts /Copy of BTC Price.png', alt: 'Cryptocurrency price chart design' },
+      { src: '/Portfolio - CNRSTN/Social Media Posts /Copy of Believe in cry.png', alt: 'Crypto belief campaign creative' }
     ],
     tags: ['Social Media Design', 'Content Strategy', 'Brand Creatives']
   },
@@ -49,10 +49,10 @@ const projects = [
     type: 'Content & Media Design',
     description: 'High-converting thumbnail designs built on psychology, not guesswork. Bold compositions and visual hooks designed to increase click-through rate for content creators across niches.',
     images: [
-      { src: '/placeholder-thumbnails-1.jpg', alt: 'UFC/sports thumbnails' },
-      { src: '/placeholder-thumbnails-2.jpg', alt: 'Crypto thumbnails' },
-      { src: '/placeholder-thumbnails-3.jpg', alt: 'Peaky Blinders style thumbnails' },
-      { src: '/placeholder-thumbnails-4.jpg', alt: 'General content creator thumbnails' }
+      { src: '/Portfolio - CNRSTN/Youtube Thumbnails/Copy of MMA Thumb 002.png', alt: 'MMA sports thumbnail design' },
+      { src: '/Portfolio - CNRSTN/Youtube Thumbnails/Copy of MMA Thumb 005.png', alt: 'Combat sports thumbnail' },
+      { src: '/Portfolio - CNRSTN/Youtube Thumbnails/Copy of Motiv Thumb 001.png', alt: 'Motivational content thumbnail' },
+      { src: '/Portfolio - CNRSTN/Youtube Thumbnails/Copy of Podcast Thumb 001.png', alt: 'Podcast episode thumbnail' }
     ],
     tags: ['Thumbnail Design', 'Media Design', 'Content Creatives']
   }
@@ -122,11 +122,13 @@ export default function Portfolio() {
                     <div
                       key={imageIndex}
                       className="relative aspect-square bg-gray-100 rounded-lg overflow-hidden border"
-                      style={{borderColor: '#D8D3CC', borderStyle: 'dashed'}}
+                      style={{borderColor: '#D8D3CC'}}
                     >
-                      <div className="absolute inset-0 flex items-center justify-center text-sm text-center p-4" style={{color: '#888'}}>
-                        {image.alt}
-                      </div>
+                      <img 
+                        src={image.src} 
+                        alt={image.alt}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                   ))}
                 </div>

@@ -120,11 +120,10 @@ export default function Navbar() {
             {/* Enhanced Logo with advanced animations */}
             <motion.button 
               onClick={() => scrollToSection('hero')}
-              className="text-2xl font-serif font-light tracking-wide relative overflow-hidden group"
-              style={{color: '#1F5144', letterSpacing: '0.02em', scale: logoScale}}
+              className="relative overflow-hidden group mr-auto"
+              style={{scale: logoScale}}
               whileHover={{ 
                 scale: 1.1,
-                color: '#369c82',
                 rotate: [0, 2, -2, 0]
               }}
               whileTap={{ scale: 0.95 }}
@@ -137,12 +136,15 @@ export default function Navbar() {
                 animate={{ x: ["-100%", "100%"] }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
               />
-              <motion.span
+              <motion.img
+                src="/Logo Kit - CNRSTN/Cornerstone Primary Logo Green.png"
+                alt="Corner Stone Design & Media"
+                className="h-16 w-auto"
                 animate={{
-                  textShadow: [
-                    "0 0 0px rgba(31, 81, 68, 0)",
-                    "0 0 20px rgba(31, 81, 68, 0.3)",
-                    "0 0 0px rgba(31, 81, 68, 0)"
+                  filter: [
+                    "drop-shadow(0 0 0px rgba(31, 81, 68, 0))",
+                    "drop-shadow(0 0 10px rgba(31, 81, 68, 0.3))",
+                    "drop-shadow(0 0 0px rgba(31, 81, 68, 0))"
                   ]
                 }}
                 transition={{
@@ -150,12 +152,10 @@ export default function Navbar() {
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
-              >
-                Corner Stone
-              </motion.span>
+              />
             </motion.button>
 
-            <div className="flex items-center gap-8">
+            <div className="flex items-center gap-8 ml-auto">
               {/* Enhanced Navigation Links with stagger */}
               <motion.div 
                 className="hidden lg:flex items-center gap-8"
