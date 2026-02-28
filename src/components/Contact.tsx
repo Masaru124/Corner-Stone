@@ -37,11 +37,37 @@ export default function Contact() {
     }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Here you would typically send the data to your backend
-    console.log('Form submitted:', formData)
-    setIsSubmitted(true)
+
+    const payload = {
+      name: formData.name,
+      brand: formData.brand,
+      whatsapp: formData.whatsapp,
+      email: formData.email,
+      services: formData.services.join(', '),
+      message: formData.message
+    }
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+
+      const result = await res.json()
+      console.log('Submission result:', result)
+
+      if (result.success) {
+        setIsSubmitted(true)
+      } else {
+        alert('Error submitting form: ' + result.error)
+      }
+    } catch (error) {
+      console.error('Form submission error:', error)
+      alert('Failed to submit form. Please try again later.')
+    }
   }
 
   if (isSubmitted) {
