@@ -23,8 +23,15 @@ export default function BraveServices() {
     offset: ["start end", "end start"]
   })
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
-    <section ref={ref} className="relative min-h-screen flex items-center justify-center bg-white">
+    <section id="services" ref={ref} className="relative min-h-screen flex items-center justify-center bg-white">
       {/* Background with parallax */}
       <motion.div
         className="absolute inset-0 z-0"
@@ -119,6 +126,7 @@ export default function BraveServices() {
           transition={{ duration: 0.8, delay: 0.3 }}
         >
           <button 
+            onClick={() => scrollToSection('portfolio')}
             className="px-8 py-4 rounded-full border-2 font-light text-lg hover:bg-white/10 transition-all duration-300"
             style={{ borderColor: '#1F5144', color: '#1F5144' }}
           >

@@ -373,7 +373,7 @@ export default function Navbar() {
                       WhatsApp: +91 636 0414 393
                     </motion.a>
                     <motion.a 
-                      href="mailto:cornerstone@gmail.com"
+                      href="mailto:info@cornerstonemedia.co.in"
                       className="hover:text-foreground relative overflow-hidden group"
                       whileHover={{ 
                         scale: 1.05,
@@ -389,7 +389,7 @@ export default function Navbar() {
                         animate={{ x: ["-100%", "100%"] }}
                         transition={{ duration: 0.6, ease: "easeOut" }}
                       />
-                      Email: cornerstone@gmail.com
+                      Email: info@cornerstonemedia.co.in
                     </motion.a>
                   </div>
                   <motion.div 

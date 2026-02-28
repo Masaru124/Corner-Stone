@@ -138,11 +138,11 @@ export default function Contact() {
                   Email
                 </div>
                 <a 
-                  href="mailto:cornerstone@gmail.com"
+                  href="mailto:info@cornerstonemedia.co.in"
                   className="hover:underline"
                   style={{color: '#111111'}}
                 >
-                  cornerstone@gmail.com
+                  info@cornerstonemedia.co.in
                 </a>
               </div>
               <div>
