@@ -1,86 +1,130 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform, useInView } from 'framer-motion'
+import { useRef } from 'react'
+import LetterReveal from './LetterReveal'
+import WordReveal from './WordReveal'
+import MaskedReveal from './MaskedReveal'
 
 const services = [
-  {
-    id: '01',
-    name: 'Brand Strategy',
-    description: 'We define who you are, who you serve, and how you communicate. Every design and marketing decision starts here.'
-  },
-  {
-    id: '02',
-    name: 'Brand Identity Design',
-    description: 'Logo, visual system, color palette, typography, and brand guidelines — everything that makes people recognise and trust you instantly.'
-  },
-  {
-    id: '03',
-    name: 'Content & Media Design',
-    description: 'Creative content built to keep your brand active, attractive, and relevant across every digital platform.'
-  },
-  {
-    id: '04',
-    name: 'Social Media Management',
-    description: 'Planning, publishing, engagement, and analysis — we manage your presence so you can focus on your business.'
-  },
-  {
-    id: '05',
-    name: 'Influencer Marketing',
-    description: 'We connect your brand with the right voices. Full collaboration management — research, coordination, and execution.'
-  },
-  {
-    id: '06',
-    name: 'Web Development',
-    description: 'Brand-focused websites that look premium, work on every device, and are built to convert visitors into customers.'
-  }
+  { id: '01', name: 'Brand Strategy' },
+  { id: '02', name: 'Digital Design' },
+  { id: '03', name: 'Development' },
+  { id: '04', name: 'Marketing' },
+  { id: '05', name: 'Content Creation' },
+  { id: '06', name: 'Analytics' }
 ]
 
-export default function Services() {
+export default function BraveServices() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: false, amount: 0.1 })
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  })
+
   return (
-    <section id="services" className="py-20 sm:py-24 lg:py-32" style={{backgroundColor: '#F8F8F6'}}>
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        {/* Section Header */}
+    <section ref={ref} className="relative min-h-screen flex items-center justify-center bg-white">
+      {/* Background with parallax */}
+      <motion.div
+        className="absolute inset-0 z-0"
+        style={{
+          background: `linear-gradient(135deg, #F8F8F6 0%, #E8E8E8 100%)`,
+          y: useTransform(scrollYProgress, [0, 1], [0, -100])
+        }}
+      />
+      
+      {/* Content */}
+      <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 py-20">
+        {/* Section Header - Letter Reveal (Scrub Animation) */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16 sm:mb-20"
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="text-center mb-20"
         >
-          <div className="font-medium text-sm tracking-wider uppercase mb-4" style={{color: '#369c82', letterSpacing: '0.35em'}}>
-            What We Do
-          </div>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-light leading-none mb-4" style={{color: '#111111', fontFamily: "'Cormorant Garamond', serif", fontWeight: '300', letterSpacing: '-0.02em'}}>
-            Everything Your Brand Needs.
-            <br />
-            One Studio.
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-light" style={{ color: '#1F5144', letterSpacing: '-0.02em' }}>
+            <LetterReveal 
+              scrub={1.5}
+              start="top 85%"
+              end="bottom 50%"
+            >
+              What We Do
+            </LetterReveal>
           </h2>
+          
+          {/* Subtitle - Word Reveal */}
+          <div className="mt-8 text-lg sm:text-xl" style={{ color: '#666' }}>
+            <WordReveal 
+              scrub={1}
+              start="top 75%"
+              end="bottom 45%"
+            >
+              We combine strategy, design, and technology to create experiences
+            </WordReveal>
+          </div>
         </motion.div>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        {/* Services Grid - Masked Reveal */}
+        <div className="space-y-16 md:space-y-24">
           {services.map((service, index) => (
             <motion.div
               key={service.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="bg-white p-8 rounded-lg border"
-              style={{borderColor: '#D8D3CC'}}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.6 }}
+              className="group relative flex items-center gap-8 md:gap-16"
             >
-              <div className="font-medium text-xs tracking-wider uppercase mb-3" style={{color: '#369c82', letterSpacing: '0.3em'}}>
+              {/* Service Number */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 0.2 }}
+                transition={{ duration: 0.6, delay: index * 0.05 }}
+                className="text-6xl md:text-8xl font-serif font-light shrink-0 w-20 md:w-32"
+                style={{ color: '#1F5144' }}
+              >
                 {service.id}
+              </motion.div>
+
+              {/* Service Name - Masked Reveal */}
+              <div className="grow">
+                <h3 className="text-4xl md:text-6xl font-serif font-light" style={{ color: '#1F5144', letterSpacing: '-0.01em' }}>
+                  <MaskedReveal 
+                    start={`top ${85 - index * 3}%`}
+                    end={`top ${60 - index * 3}%`}
+                    duration={0.9}
+                  >
+                    {service.name}
+                  </MaskedReveal>
+                </h3>
               </div>
-              <h3 className="text-xl font-semibold mb-4 leading-tight" style={{color: '#111111', fontWeight: '600', lineHeight: '1.2'}}>
-                {service.name}
-              </h3>
-              <p className="leading-relaxed" style={{color: '#555', fontWeight: '300', fontSize: '14px', lineHeight: '1.6'}}>
-                {service.description}
-              </p>
+
+              {/* Hover Underline */}
+              <motion.div
+                className="absolute bottom-0 left-20 md:left-32 right-0 h-0.5"
+                style={{ color: '#1F5144', backgroundColor: '#1F5144' }}
+                initial={{ scaleX: 0 }}
+                whileHover={{ scaleX: 1 }}
+                transition={{ duration: 0.3 }}
+              />
             </motion.div>
           ))}
         </div>
+
+        {/* Call to Action */}
+        <motion.div
+          className="text-center mt-24"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+        >
+          <button 
+            className="px-8 py-4 rounded-full border-2 font-light text-lg hover:bg-white/10 transition-all duration-300"
+            style={{ borderColor: '#1F5144', color: '#1F5144' }}
+          >
+            Explore Our Work
+          </button>
+        </motion.div>
       </div>
     </section>
   )

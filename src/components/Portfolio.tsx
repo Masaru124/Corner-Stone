@@ -8,7 +8,7 @@ const projects = [
     id: 'climate',
     title: 'Climate',
     type: 'Brand Identity + Packaging',
-    description: 'A premium non-alcoholic beverage brand inspired by exotic flavors from around the world. We built the complete visual identity — logo, color system, product packaging, and social media presence.',
+    description: 'A premium non-alcoholic beverage brand inspired by exotic flavors from around the world. We built complete visual identity — logo, color system, product packaging, and social media presence.',
     images: [
       { src: '/placeholder-climate-1.jpg', alt: 'Blue Mirage can - navy blue version' },
       { src: '/placeholder-climate-2.jpg', alt: 'Blue Mirage can - green version' },
