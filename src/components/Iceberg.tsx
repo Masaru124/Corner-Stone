@@ -24,31 +24,31 @@ const growthDrivers = [
 
 export default function Iceberg() {
   return (
-    <section className="relative min-h-screen py-20 sm:py-24 lg:py-32 overflow-hidden" style={{backgroundColor: '#1F5144'}}>
+    <section className="relative min-h-screen py-16 sm:py-24 lg:py-32 overflow-hidden" style={{backgroundColor: '#1F5144'}}>
       {/* Visible Label - Top Left */}
       <motion.div 
-        className="absolute top-20 left-8 z-20"
+        className="absolute top-8 sm:top-20 left-4 sm:left-8 z-20"
         initial={{ opacity: 0, x: -30 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
       >
-        <span className="text-white text-2xl sm:text-3xl lg:text-4xl font-serif italic">Visible</span>
+        <span className="text-white text-xl sm:text-3xl lg:text-4xl font-serif italic">Visible</span>
       </motion.div>
 
       {/* Invisible Label - Bottom Left */}
       <motion.div 
-        className="absolute bottom-20 left-8 z-20"
+        className="absolute bottom-8 sm:bottom-20 left-4 sm:left-8 z-20"
         initial={{ opacity: 0, x: -30 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, delay: 0.3 }}
         viewport={{ once: true }}
       >
-        <span className="text-white text-2xl sm:text-3xl lg:text-4xl font-serif italic">Invisible</span>
+        <span className="text-white text-xl sm:text-3xl lg:text-4xl font-serif italic">Invisible</span>
       </motion.div>
 
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 relative">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 items-center">
           {/* Left Side - Iceberg Image */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -58,7 +58,7 @@ export default function Iceberg() {
             className="relative flex items-center justify-center"
           >
             {/* Iceberg Image */}
-            <div className="relative w-full max-w-md">
+            <div className="relative w-full max-w-sm sm:max-w-md">
               <img 
                 src="/brand%20ice%20berg_.png" 
                 alt="Brand Iceberg - What People See vs What Actually Drives Growth"
@@ -79,7 +79,7 @@ export default function Iceberg() {
           </motion.div>
 
           {/* Right Side - Lists */}
-          <div className="space-y-12">
+          <div className="space-y-10 sm:space-y-12">
             {/* Visible Items - Above Water */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
@@ -109,7 +109,7 @@ export default function Iceberg() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
               viewport={{ once: true }}
-              className="relative top-8"
+              className="relative lg:top-8"
             >
               <ul className="space-y-3">
                 {growthDrivers.map((item, index) => (

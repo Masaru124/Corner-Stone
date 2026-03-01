@@ -7,10 +7,9 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const { scrollY } = useScroll()
   
-  // Scroll-based animations - more dramatic
+  // Scroll-based animations
   const navbarBackground = useTransform(scrollY, [0, 100], ['rgba(248, 248, 246, 0.95)', 'rgba(248, 248, 246, 0.98)'])
-  const navbarScale = useTransform(scrollY, [0, 100], [1.05, 1])
-  const logoScale = useTransform(scrollY, [0, 100], [1, 0.85])
+  const navbarScale = useTransform(scrollY, [0, 100], [1.02, 1])
   const navbarY = useTransform(scrollY, [0, 50], [0, 0])
   const shadowIntensity = useTransform(scrollY, [0, 100], [0, 0.3])
 
@@ -22,7 +21,6 @@ export default function Navbar() {
     setIsMenuOpen(false)
   }
 
-  // Enhanced animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -36,7 +34,7 @@ export default function Navbar() {
     }
   }
 
-  const linkVariants = {
+  const desktopLinkVariants = {
     hidden: { 
       opacity: 0, 
       y: -20,
@@ -55,48 +53,43 @@ export default function Navbar() {
     }
   }
 
-  const menuVariants = {
+  const mobileMenuVariants = {
     hidden: { 
       opacity: 0,
-      scale: 0.8,
-      rotateX: -25,
-      filter: "blur(20px)"
+      y: -16,
+      filter: "blur(8px)"
     },
     visible: {
       opacity: 1,
-      scale: 1,
-      rotateX: 0,
+      y: 0,
       filter: "blur(0px)",
       transition: {
-        duration: 0.6,
+        duration: 0.3,
         ease: [0.25, 0.1, 0.25, 1] as const
       }
     },
     exit: {
       opacity: 0,
-      scale: 0.8,
-      rotateX: 25,
-      filter: "blur(20px)",
+      y: -10,
+      filter: "blur(8px)",
       transition: {
-        duration: 0.4,
+        duration: 0.2,
         ease: [0.25, 0.1, 0.25, 1] as const
       }
     }
   }
 
-  const menuItemVariants = {
+  const mobileMenuItemVariants = {
     hidden: { 
       opacity: 0, 
-      x: -50,
-      rotateY: -45
+      x: -20,
     },
     visible: (i: number) => ({
       opacity: 1,
       x: 0,
-      rotateY: 0,
       transition: {
-        duration: 0.5,
-        delay: i * 0.1,
+        duration: 0.3,
+        delay: i * 0.06,
         ease: [0.25, 0.1, 0.25, 1] as const
       }
     })
@@ -105,7 +98,7 @@ export default function Navbar() {
   return (
     <>
       <motion.nav 
-        className="absolute top-6 right-8 z-50"
+        className="absolute top-4 right-4 z-50 sm:top-6 sm:right-6"
         style={{ 
           backgroundColor: navbarBackground,
           scale: navbarScale,
@@ -115,10 +108,9 @@ export default function Navbar() {
         }}
         transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
       >
-        <div className="flex flex-col items-end gap-6">
-          {/* Enhanced Navigation Links with stagger - Vertical Layout */}
+        <div className="flex flex-col items-end gap-3 sm:gap-4">
           <motion.div 
-            className="flex flex-col items-end gap-6 p-8 rounded-xl"
+            className="hidden lg:flex flex-col items-end gap-5 p-6 rounded-xl"
             style={{backgroundColor: '#F8F8F6', borderColor: '#D8D3CC'}}
             variants={containerVariants}
             initial="hidden"
@@ -132,26 +124,24 @@ export default function Navbar() {
                   <motion.button
                     key={item.name}
                     custom={i}
-                    variants={linkVariants}
+                    variants={desktopLinkVariants}
                     onClick={() => scrollToSection(item.section)}
-                    className="text-2xl font-medium tracking-wider relative overflow-hidden group text-left py-2"
+                    className="text-xl font-medium tracking-wider relative overflow-hidden group text-left py-1"
                     style={{color: '#1F5144', letterSpacing: '0.05em'}}
                     whileHover={{ 
-                      x: 8,
+                      x: 6,
                       color: '#369c82',
-                      scale: 1.1
+                      scale: 1.05
                     }}
                     whileTap={{ scale: 0.95 }}
                     transition={{ duration: 0.2 }}
                   >
-                    {/* Link underline animation */}
                     <motion.div
                       className="absolute bottom-0 left-0 w-full h-0.5 bg-teal-500 origin-left"
                       initial={{ scaleX: 0 }}
                       whileHover={{ scaleX: 1 }}
                       transition={{ duration: 0.3 }}
                     />
-                    {/* Link glow effect */}
                     <motion.div
                       className="absolute inset-0 bg-teal-500 opacity-0 group-hover:opacity-10 blur-md"
                       initial={false}
@@ -163,48 +153,75 @@ export default function Navbar() {
                 ))}
               </motion.div>
 
-              {/* Enhanced Menu Trigger */}
               <motion.button
-                onClick={() => setIsMenuOpen(true)}
-                className="lg:hidden font-medium tracking-wider relative"
+                onClick={() => setIsMenuOpen((current) => !current)}
+                className="lg:hidden px-4 py-3 rounded-xl font-medium tracking-wider relative"
                 style={{color: '#1F5144', letterSpacing: '0.05em'}}
                 whileHover={{ 
-                  scale: 1.1,
-                  color: '#369c82',
-                  rotate: [0, 5, 0, -5, 0]
+                  scale: 1.03,
+                  color: '#369c82'
                 }}
                 whileTap={{ scale: 0.9 }}
                 transition={{ duration: 0.2 }}
+                aria-expanded={isMenuOpen}
+                aria-label="Toggle navigation menu"
               >
                 <motion.div
                   className="flex flex-col gap-1"
-                  animate={{
-                    rotate: [0, 180]
-                  }}
-                  transition={{
-                    duration: 0.6,
-                    ease: "easeInOut"
-                  }}
                 >
                   <motion.div 
                     className="w-6 h-0.5 bg-current"
-                    animate={{ width: [24, 20, 24] }}
-                    transition={{ duration: 2, repeat: Infinity }}
+                    animate={isMenuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
+                    transition={{ duration: 0.2 }}
                   />
                   <motion.div 
                     className="w-6 h-0.5 bg-current"
-                    animate={{ width: [24, 28, 24] }}
-                    transition={{ duration: 2, repeat: Infinity, delay: 0.2 }}
+                    animate={isMenuOpen ? { opacity: 0 } : { opacity: 1 }}
+                    transition={{ duration: 0.2 }}
                   />
                   <motion.div 
                     className="w-6 h-0.5 bg-current"
-                    animate={{ width: [24, 16, 24] }}
-                    transition={{ duration: 2, repeat: Infinity, delay: 0.4 }}
+                    animate={isMenuOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
+                    transition={{ duration: 0.2 }}
                   />
                 </motion.div>
               </motion.button>
             </div>
           </motion.nav>
+
+      <AnimatePresence>
+        {isMenuOpen ? (
+          <motion.div
+            className="absolute inset-x-4 top-20 z-40 lg:hidden rounded-2xl border p-5"
+            style={{ backgroundColor: '#F8F8F6', borderColor: '#D8D3CC' }}
+            variants={mobileMenuVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+          >
+            <div className="flex flex-col gap-3">
+              {[
+                { name: 'Work', section: 'portfolio' },
+                { name: 'What We Do', section: 'services' },
+                { name: 'Contact', section: 'contact' },
+              ].map((item, index) => (
+                <motion.button
+                  key={item.name}
+                  custom={index}
+                  variants={mobileMenuItemVariants}
+                  initial="hidden"
+                  animate="visible"
+                  className="text-left rounded-lg px-3 py-2 text-base font-medium"
+                  style={{ color: '#1F5144' }}
+                  onClick={() => scrollToSection(item.section)}
+                >
+                  {item.name}
+                </motion.button>
+              ))}
+            </div>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
     </>
   )
 }

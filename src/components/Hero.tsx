@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-motion'
 import { useEffect, useState, useRef } from 'react'
+import Navbar from '@/components/Navbar'
 
 export default function Hero() {
   const [scrollY, setScrollY] = useState(0)
@@ -91,7 +92,9 @@ export default function Hero() {
   }
 
   return (
-    <section id="hero" ref={ref} className="relative min-h-screen pb-16" style={{backgroundColor: '#F8F8F6'}}>
+    <section id="hero" ref={ref} className="relative min-h-screen pb-16 pt-24 sm:pt-28 lg:pt-12" style={{backgroundColor: '#F8F8F6'}}>
+      <Navbar />
+
       {/* Animated background elements */}
       <motion.div 
         className="absolute inset-0"
@@ -156,7 +159,7 @@ export default function Hero() {
       
       {/* Main content with enhanced animations */}
       <motion.div 
-        className="relative z-10 text-left px-6 sm:px-8 lg:px-12 max-w-full w-full"
+        className="relative z-10 text-left px-4 sm:px-8 lg:px-12 max-w-full w-full"
         style={{ 
           y: textY, 
           opacity, 
@@ -173,7 +176,7 @@ export default function Hero() {
           <div className="flex-1">
             {/* Main Headline with staggered animation */}
             <motion.h1 
-              className="text-7xl sm:text-8xl lg:text-9xl xl:text-10xl font-serif font-bold leading-none mb-8 text-left" 
+              className="text-5xl sm:text-7xl lg:text-9xl xl:text-10xl font-serif font-bold leading-none mb-6 sm:mb-8 text-left" 
               style={{color: '#1F5144', letterSpacing: '-0.02em'}}
             >
               <motion.div variants={textVariants}>Vision</motion.div>
@@ -184,7 +187,7 @@ export default function Hero() {
             {/* Enhanced subtext */}
             <motion.p 
               variants={textVariants}
-              className="text-xl sm:text-2xl lg:text-3xl font-light text-left" 
+              className="text-lg sm:text-2xl lg:text-3xl font-light text-left pr-2 sm:pr-0" 
               style={{color: '#111111', letterSpacing: '-0.01em'}}
             >
               The Studio Behind Brands That Get Noticed.
@@ -194,13 +197,13 @@ export default function Hero() {
             <motion.div
               variants={textVariants}
               id="hero-button-container"
-              className="mt-12 flex w-full items-center gap-4"
+              className="mt-8 sm:mt-12 flex w-full flex-col sm:flex-row items-start sm:items-center gap-5"
             >
               {/* Left buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 items-start">
+              <div className="flex w-full sm:w-auto flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-start">
                 <motion.button
                   onClick={() => scrollToSection('contact')}
-                  className="px-8 py-4 text-white font-medium rounded-full text-lg relative overflow-hidden group"
+                  className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 text-white font-medium rounded-full text-base sm:text-lg relative overflow-hidden group"
                   style={{backgroundColor: '#1F5144'}}
                   whileHover={{ 
                     scale: 1.05,
@@ -227,7 +230,7 @@ export default function Hero() {
                 
                 <motion.button
                   onClick={() => scrollToSection('portfolio')}
-                  className="px-6 py-4 text-lg font-medium relative overflow-hidden group"
+                  className="px-2 sm:px-6 py-2 sm:py-4 text-base sm:text-lg font-medium relative overflow-hidden group text-left"
                   style={{color: '#1F5144'}}
                   whileHover={{ 
                     scale: 1.05,
@@ -240,11 +243,11 @@ export default function Hero() {
                 </motion.button>
               </div>
 
-              <motion.div className="ml-auto shrink-0 self-center">
+              <motion.div className="ml-0 sm:ml-auto shrink-0 self-start sm:self-center">
                 <img
                   src="/Logo Kit - CNRSTN/Cornerstone Secondary Logo Green.png"
                   alt="Corner Stone Design & Media"
-                  className="h-8 sm:h-10 lg:h-12 xl:h-20 w-auto"
+                  className="h-7 sm:h-10 lg:h-12 xl:h-20 w-auto"
                 />
               </motion.div>
             </motion.div>
@@ -257,7 +260,7 @@ export default function Hero() {
         variants={floatingVariants}
         initial="initial"
         animate="animate"
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        className="absolute bottom-10 sm:bottom-8 left-1/2 transform -translate-x-1/2"
       >
         <motion.div className="flex flex-col items-center gap-2">
           <motion.span 

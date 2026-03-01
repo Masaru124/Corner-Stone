@@ -376,9 +376,9 @@ export default function AdminDashboard() {
   }
 
   return (
-    <main className="min-h-screen px-6 py-8 sm:py-12" style={{ backgroundColor: '#F8F8F6' }}>
+    <main className="min-h-screen px-4 sm:px-6 py-6 sm:py-12" style={{ backgroundColor: '#F8F8F6' }}>
       <div className="max-w-5xl mx-auto">
-        <div className="flex items-center justify-between gap-4 mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 sm:mb-8">
           <div>
             <h1 className="text-3xl sm:text-4xl font-serif" style={{ color: '#1F5144' }}>
               Admin Dashboard
@@ -391,14 +391,14 @@ export default function AdminDashboard() {
           <button
             type="button"
             onClick={handleLogout}
-            className="rounded-lg px-4 py-2 text-white"
+            className="w-full sm:w-auto rounded-lg px-4 py-2 text-white"
             style={{ backgroundColor: '#1F5144' }}
           >
             Logout
           </button>
         </div>
 
-        <section className="bg-white rounded-2xl p-6 mb-8">
+        <section className="bg-white rounded-2xl p-4 sm:p-6 mb-6 sm:mb-8">
           <h2 className="text-xl font-serif mb-4" style={{ color: '#1F5144' }}>
             Add Post
           </h2>
@@ -410,6 +410,11 @@ export default function AdminDashboard() {
             <input type="text" value={tagsInput} onChange={(event) => setTagsInput(event.target.value)} className="w-full border rounded-lg px-3 py-2" style={{ borderColor: '#D0D0D0' }} placeholder="Tags: comma separated" />
 
             <input ref={createImageInputRef} type="file" accept="image/*" multiple onChange={(event) => setSelectedImages(Array.from(event.target.files || []))} className="block w-full text-sm" />
+            {selectedImages.length > 0 ? (
+              <p className="text-sm wrap-break-word" style={{ color: '#4A4A4A' }}>
+                Selected: {selectedImages.map((file) => file.name).join(', ')}
+              </p>
+            ) : null}
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               <select value={imageFit} onChange={(event) => setImageFit(event.target.value as 'contain' | 'cover')} className="w-full border rounded-lg px-3 py-2" style={{ borderColor: '#D0D0D0' }}>
@@ -429,7 +434,7 @@ export default function AdminDashboard() {
               </select>
             </div>
 
-            <button type="submit" disabled={isSubmitting} className="rounded-lg px-5 py-2.5 text-white disabled:opacity-60" style={{ backgroundColor: '#1F5144' }}>
+            <button type="submit" disabled={isSubmitting} className="w-full sm:w-auto rounded-lg px-5 py-2.5 text-white disabled:opacity-60" style={{ backgroundColor: '#1F5144' }}>
               {isSubmitting ? 'Saving...' : 'Add Post'}
             </button>
           </form>
@@ -437,7 +442,7 @@ export default function AdminDashboard() {
           {message ? <p className="text-sm mt-3" style={{ color: '#4A4A4A' }}>{message}</p> : null}
         </section>
 
-        <section className="bg-white rounded-2xl p-6">
+        <section className="bg-white rounded-2xl p-4 sm:p-6">
           <h2 className="text-xl font-serif mb-4" style={{ color: '#1F5144' }}>
             Posts
           </h2>
@@ -452,7 +457,7 @@ export default function AdminDashboard() {
                 const isEditing = editingPostId === post.id && editDraft
 
                 return (
-                  <article key={post.id} className="border rounded-xl p-4" style={{ borderColor: '#E7E7E7' }}>
+                  <article key={post.id} className="border rounded-xl p-3 sm:p-4" style={{ borderColor: '#E7E7E7' }}>
                     <div className="flex flex-col gap-3">
                       <div className="flex flex-wrap items-center justify-between gap-3">
                         <div>
@@ -460,14 +465,14 @@ export default function AdminDashboard() {
                           <p className="text-sm" style={{ color: '#4A4A4A' }}>{post.type}</p>
                         </div>
 
-                        <div className="flex items-center gap-2">
-                          <button type="button" onClick={() => handleTogglePostVisibility(post)} className="px-3 py-1.5 rounded-lg text-sm text-white" style={{ backgroundColor: post.hidden ? '#8D6E63' : '#1F5144' }}>
+                        <div className="flex w-full sm:w-auto flex-wrap items-center gap-2">
+                          <button type="button" onClick={() => handleTogglePostVisibility(post)} className="flex-1 sm:flex-none px-3 py-1.5 rounded-lg text-sm text-white" style={{ backgroundColor: post.hidden ? '#8D6E63' : '#1F5144' }}>
                             {post.hidden ? 'Unhide' : 'Hide'}
                           </button>
-                          <button type="button" onClick={() => (isEditing ? cancelEdit() : beginEdit(post))} className="px-3 py-1.5 rounded-lg text-sm text-white" style={{ backgroundColor: '#375A7F' }}>
+                          <button type="button" onClick={() => (isEditing ? cancelEdit() : beginEdit(post))} className="flex-1 sm:flex-none px-3 py-1.5 rounded-lg text-sm text-white" style={{ backgroundColor: '#375A7F' }}>
                             {isEditing ? 'Cancel Edit' : 'Edit'}
                           </button>
-                          <button type="button" onClick={() => handleDeletePost(post.id)} className="px-3 py-1.5 rounded-lg text-sm text-white" style={{ backgroundColor: '#7A2323' }}>
+                          <button type="button" onClick={() => handleDeletePost(post.id)} className="flex-1 sm:flex-none px-3 py-1.5 rounded-lg text-sm text-white" style={{ backgroundColor: '#7A2323' }}>
                             Delete
                           </button>
                         </div>
@@ -546,7 +551,7 @@ export default function AdminDashboard() {
                               className="block w-full text-sm"
                             />
                             {editDraft.newImages.length > 0 ? (
-                              <p className="text-sm mt-2" style={{ color: '#4A4A4A' }}>
+                              <p className="text-sm mt-2 wrap-break-word" style={{ color: '#4A4A4A' }}>
                                 New images to add: {editDraft.newImages.map((file) => file.name).join(', ')}
                               </p>
                             ) : null}
@@ -574,7 +579,7 @@ export default function AdminDashboard() {
                             type="button"
                             onClick={() => saveEdit(post)}
                             disabled={isSubmitting}
-                            className="px-4 py-2 rounded-lg text-white disabled:opacity-60"
+                            className="w-full sm:w-auto px-4 py-2 rounded-lg text-white disabled:opacity-60"
                             style={{ backgroundColor: '#1F5144' }}
                           >
                             {isSubmitting ? 'Saving...' : 'Save Changes'}
@@ -610,7 +615,7 @@ export default function AdminDashboard() {
                             </div>
                           ) : null}
 
-                          <p className="text-xs" style={{ color: '#777' }}>
+                          <p className="text-xs wrap-break-word" style={{ color: '#777' }}>
                             Status: {post.hidden ? 'Hidden' : 'Visible'} • Created {new Date(post.created_at).toLocaleString()}
                           </p>
                         </>
