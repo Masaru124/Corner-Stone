@@ -31,7 +31,7 @@ export default function BraveServices() {
   }
 
   return (
-    <section id="services" ref={ref} className="relative min-h-screen flex items-center justify-center bg-white">
+    <section id="services" ref={ref} className="relative min-h-screen flex items-center justify-start bg-white">
       {/* Background with parallax */}
       <motion.div
         className="absolute inset-0 z-0"
@@ -42,7 +42,7 @@ export default function BraveServices() {
       />
       
       {/* Content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 py-20">
+      <div className="relative z-10 max-w-6xl px-6 sm:px-8 lg:px-12 py-20">
         {/* Section Header - Letter Reveal (Scrub Animation) */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}

@@ -91,7 +91,7 @@ export default function Hero() {
   }
 
   return (
-    <section id="hero" ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20" style={{backgroundColor: '#F8F8F6'}}>
+    <section id="hero" ref={ref} className="relative min-h-screen pt-58 pb-16" style={{backgroundColor: '#F8F8F6'}}>
       {/* Animated background elements */}
       <motion.div 
         className="absolute inset-0"
@@ -156,7 +156,7 @@ export default function Hero() {
       
       {/* Main content with enhanced animations */}
       <motion.div 
-        className="relative z-10 text-left px-6 sm:px-8 lg:px-12 max-w-4xl mx-auto w-full"
+        className="relative z-10 text-left px-6 sm:px-8 lg:px-12 max-w-full w-full"
         style={{ 
           y: textY, 
           opacity, 
@@ -168,69 +168,89 @@ export default function Hero() {
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
       >
-        {/* Main Headline with staggered animation */}
-        <motion.h1 
-          className="text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-serif font-light leading-none mb-8" 
-          style={{color: '#1F5144', letterSpacing: '-0.02em'}}
-        >
-          <motion.div variants={textVariants}>Vision Made Visible.</motion.div>
-        </motion.h1>
-        
-        {/* Enhanced subtext */}
-        <motion.p 
-          variants={textVariants}
-          className="text-xl sm:text-2xl lg:text-3xl font-light max-w-2xl" 
-          style={{color: '#111111', letterSpacing: '-0.01em'}}
-        >
-          The Studio Behind Brands That Get Noticed.
-        </motion.p>
-
-        {/* Enhanced CTA Buttons */}
-        <motion.div
-          variants={textVariants}
-          className="mt-12 flex flex-col sm:flex-row gap-4 items-center justify-center"
-        >
-          <motion.button
-            onClick={() => scrollToSection('contact')}
-            className="px-8 py-4 text-white font-medium rounded-full text-lg relative overflow-hidden group"
-            style={{backgroundColor: '#1F5144'}}
-            whileHover={{ 
-              scale: 1.05,
-              backgroundColor: '#369c82',
-              boxShadow: "0 20px 40px rgba(31, 81, 68, 0.3)"
-            }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-          >
-            {/* Button ripple effect */}
-            <motion.span
-              className="absolute inset-0 bg-white opacity-0"
-              animate={{ x: ["-100%", "100%"] }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-            />
-            <motion.span
-              className="relative z-10"
-              whileHover={{ scale: 1.1 }}
-              transition={{ duration: 0.2 }}
+        <div className="flex justify-between gap-8">
+          {/* Text Content */}
+          <div className="flex-1 max-w-2xl">
+            {/* Main Headline with staggered animation */}
+            <motion.h1 
+              className="text-7xl sm:text-8xl lg:text-9xl xl:text-10xl font-serif font-bold leading-none mb-8 text-left" 
+              style={{color: '#1F5144', letterSpacing: '-0.02em'}}
             >
-              Book a Discovery Call
-            </motion.span>
-          </motion.button>
-          
-          <motion.button
-            onClick={() => scrollToSection('portfolio')}
-            className="px-6 py-4 text-lg font-medium relative overflow-hidden group"
-            style={{color: '#1F5144'}}
-            whileHover={{ 
-              scale: 1.05,
-              color: '#369c82'
-            }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-          >
-            See Our Work ↓
-          </motion.button>
-        </motion.div>
+              <motion.div variants={textVariants}>Vision</motion.div>
+              <motion.div variants={textVariants}>Made</motion.div>
+              <motion.div variants={textVariants}>Visible</motion.div>
+            </motion.h1>
+            
+            {/* Enhanced subtext */}
+            <motion.p 
+              variants={textVariants}
+              className="text-xl sm:text-2xl lg:text-3xl font-light max-w-2xl text-left" 
+              style={{color: '#111111', letterSpacing: '-0.01em'}}
+            >
+              The Studio Behind Brands That Get Noticed.
+            </motion.p>
+
+            {/* Enhanced CTA Buttons */}
+            <motion.div
+              variants={textVariants}
+              className="mt-12 flex items-center justify-between"
+            >
+              {/* Left buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 items-start">
+                <motion.button
+                  onClick={() => scrollToSection('contact')}
+                  className="px-8 py-4 text-white font-medium rounded-full text-lg relative overflow-hidden group"
+                  style={{backgroundColor: '#1F5144'}}
+                  whileHover={{ 
+                    scale: 1.05,
+                    backgroundColor: '#369c82',
+                    boxShadow: "0 20px 40px rgba(31, 81, 68, 0.3)"
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+                >
+                  {/* Button ripple effect */}
+                  <motion.span
+                    className="absolute inset-0 bg-white opacity-0"
+                    animate={{ x: ["-100%", "100%"] }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                  />
+                  <motion.span
+                    className="relative z-10"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    Book a Discovery Call
+                  </motion.span>
+                </motion.button>
+                
+                <motion.button
+                  onClick={() => scrollToSection('portfolio')}
+                  className="px-6 py-4 text-lg font-medium relative overflow-hidden group"
+                  style={{color: '#1F5144'}}
+                  whileHover={{ 
+                    scale: 1.05,
+                    color: '#369c82'
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+                >
+                  See Our Work ↓
+                </motion.button>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Logo on the complete right */}
+          <div className="flex-shrink-0 self-end mb-4">
+            <motion.img
+              variants={textVariants}
+              src="/Logo Kit - CNRSTN/Cornerstone Secondary Logo Green.png"
+              alt="Corner Stone Design & Media"
+              className="h-8 sm:h-10 lg:h-12 xl:h-20 w-auto"
+            />
+          </div>
+        </div>
       </motion.div>
 
       {/* Enhanced scroll indicator */}
@@ -268,7 +288,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.5 }}
-        className="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-200 overflow-hidden"
+        className="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-200 overflow-hidden z-20"
         style={{borderColor: '#D8D3CC'}}
       >
         <motion.div
@@ -283,7 +303,7 @@ export default function Hero() {
           className="flex whitespace-nowrap py-3 text-sm font-medium tracking-wider"
           style={{color: '#333', letterSpacing: '0.15em'}}
         >
-          BRAND STRATEGY &nbsp;·&nbsp; VISUAL IDENTITY &nbsp;·&nbsp; SOCIAL MEDIA &nbsp;·&nbsp; CONTENT DESIGN &nbsp;·&nbsp; WEB DEVELOPMENT &nbsp;·&nbsp; INFLUENCER MARKETING &nbsp;·&nbsp; CAMPAIGNS &nbsp;·&nbsp; BRAND STRATEGY &nbsp;·&nbsp; VISUAL IDENTITY &nbsp;·&nbsp; SOCIAL MEDIA &nbsp;·&nbsp; CONTENT DESIGN &nbsp;·&nbsp; WEB DEVELOPMENT &nbsp;·&nbsp; INFLUENCER MARKETING &nbsp;·&nbsp; CAMPAIGNS
+          BRAND STRATEGY • VISUAL IDENTITY • SOCIAL MEDIA • CONTENT DESIGN • WEB DEVELOPMENT • INFLUENCER MARKETING • CAMPAIGNS • BRAND STRATEGY • VISUAL IDENTITY • SOCIAL MEDIA • CONTENT DESIGN • WEB DEVELOPMENT • INFLUENCER MARKETING • CAMPAIGNS
         </motion.div>
       </motion.div>
     </section>

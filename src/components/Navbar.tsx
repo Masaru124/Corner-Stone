@@ -8,10 +8,10 @@ export default function Navbar() {
   const { scrollY } = useScroll()
   
   // Scroll-based animations - more dramatic
-  const navbarBackground = useTransform(scrollY, [0, 100], ['rgba(248, 248, 246, 0)', 'rgba(248, 248, 246, 0.98)'])
-  const navbarScale = useTransform(scrollY, [0, 100], [1, 0.95])
+  const navbarBackground = useTransform(scrollY, [0, 100], ['rgba(248, 248, 246, 0.95)', 'rgba(248, 248, 246, 0.98)'])
+  const navbarScale = useTransform(scrollY, [0, 100], [1.05, 1])
   const logoScale = useTransform(scrollY, [0, 100], [1, 0.85])
-  const navbarY = useTransform(scrollY, [0, 50], [0, -10])
+  const navbarY = useTransform(scrollY, [0, 50], [0, 0])
   const shadowIntensity = useTransform(scrollY, [0, 100], [0, 0.3])
 
   const scrollToSection = (sectionId: string) => {
@@ -105,7 +105,7 @@ export default function Navbar() {
   return (
     <>
       <motion.nav 
-        className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm border-b border-transparent"
+        className="absolute top-32 right-8 z-50"
         style={{ 
           backgroundColor: navbarBackground,
           scale: navbarScale,
@@ -115,54 +115,15 @@ export default function Navbar() {
         }}
         transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
       >
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-          <div className="flex items-center justify-between h-20">
-            {/* Enhanced Logo with advanced animations */}
-            <motion.button 
-              onClick={() => scrollToSection('hero')}
-              className="relative overflow-hidden group mr-auto"
-              style={{scale: logoScale}}
-              whileHover={{ 
-                scale: 1.1,
-                rotate: [0, 2, -2, 0]
-              }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ duration: 0.3 }}
-            >
-              {/* Logo hover effect */}
-              <motion.div
-                className="absolute inset-0 bg-primary opacity-0 group-hover:opacity-10"
-                initial={false}
-                animate={{ x: ["-100%", "100%"] }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
-              />
-              <motion.img
-                src="/Logo Kit - CNRSTN/Cornerstone Primary Logo Green.png"
-                alt="Corner Stone Design & Media"
-                className="h-16 w-auto"
-                animate={{
-                  filter: [
-                    "drop-shadow(0 0 0px rgba(31, 81, 68, 0))",
-                    "drop-shadow(0 0 10px rgba(31, 81, 68, 0.3))",
-                    "drop-shadow(0 0 0px rgba(31, 81, 68, 0))"
-                  ]
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              />
-            </motion.button>
-
-            <div className="flex items-center gap-8 ml-auto">
-              {/* Enhanced Navigation Links with stagger */}
-              <motion.div 
-                className="hidden lg:flex items-center gap-8"
-                variants={containerVariants}
-                initial="hidden"
-                animate="visible"
-              >
+        <div className="flex flex-col items-end gap-6">
+          {/* Enhanced Navigation Links with stagger - Vertical Layout */}
+          <motion.div 
+            className="flex flex-col items-end gap-6 p-8 rounded-xl"
+            style={{backgroundColor: '#F8F8F6', borderColor: '#D8D3CC'}}
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
                 {[
                   { name: 'Work', section: 'portfolio' },
                   { name: 'What We Do', section: 'services' },
@@ -173,12 +134,12 @@ export default function Navbar() {
                     custom={i}
                     variants={linkVariants}
                     onClick={() => scrollToSection(item.section)}
-                    className="text-sm font-medium tracking-wider relative overflow-hidden group"
+                    className="text-2xl font-medium tracking-wider relative overflow-hidden group text-left py-2"
                     style={{color: '#1F5144', letterSpacing: '0.05em'}}
                     whileHover={{ 
-                      y: -5,
+                      x: 8,
                       color: '#369c82',
-                      scale: 1.05
+                      scale: 1.1
                     }}
                     whileTap={{ scale: 0.95 }}
                     transition={{ duration: 0.2 }}
@@ -243,176 +204,7 @@ export default function Navbar() {
                 </motion.div>
               </motion.button>
             </div>
-          </div>
-        </div>
-      </motion.nav>
-
-      {/* Enhanced Fullscreen Menu */}
-      <AnimatePresence mode="wait">
-        {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-50"
-            style={{backgroundColor: '#F8F8F6'}}
-          >
-            <motion.div 
-              className="h-full flex flex-col"
-              variants={menuVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-            >
-              {/* Enhanced Close Button */}
-              <div className="flex justify-end p-6 sm:p-8 lg:p-12">
-                <motion.button
-                  onClick={() => setIsMenuOpen(false)}
-                  className="text-foreground/70 hover:text-foreground text-2xl font-light relative"
-                  whileHover={{ 
-                    scale: 1.2, 
-                    rotate: 180,
-                    color: '#1F5144'
-                  }}
-                  whileTap={{ scale: 0.8 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <motion.div
-                    className="absolute inset-0 rounded-full bg-primary opacity-0"
-                    whileHover={{ opacity: 0.1 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                  ×
-                </motion.button>
-              </div>
-
-              {/* Enhanced Navigation Links */}
-              <div className="flex-1 flex items-center justify-center">
-                <nav className="text-center">
-                  <motion.ul 
-                    className="space-y-8"
-                    variants={containerVariants}
-                    initial="hidden"
-                    animate="visible"
-                  >
-                    {[
-                      { name: 'Work', section: 'portfolio' },
-                      { name: 'What We Do', section: 'services' },
-                      { name: 'Contact', section: 'contact' }
-                    ].map((item, i) => (
-                      <motion.li
-                        key={item.name}
-                        custom={i}
-                        variants={menuItemVariants}
-                      >
-                        <motion.button
-                          onClick={() => scrollToSection(item.section)}
-                          className="text-5xl sm:text-6xl lg:text-7xl font-serif font-light relative overflow-hidden group"
-                          style={{color: '#1F5144'}}
-                          whileHover={{ 
-                            scale: 1.05, 
-                            x: 30,
-                            color: '#369c82',
-                            rotateY: 10
-                          }}
-                          whileTap={{ scale: 0.95 }}
-                          transition={{ duration: 0.3 }}
-                        >
-                          {/* Text reveal effect */}
-                          <motion.div
-                            className="absolute inset-0 bg-teal-500 opacity-0 group-hover:opacity-10"
-                            initial={false}
-                            animate={{ y: ["100%", "0%"] }}
-                            transition={{ duration: 0.4, ease: "easeOut" }}
-                          />
-                          {/* Text glow */}
-                          <motion.span
-                            whileHover={{
-                              textShadow: "0 0 30px rgba(54, 156, 130, 0.5)"
-                            }}
-                            transition={{ duration: 0.2 }}
-                          >
-                            {item.name}
-                          </motion.span>
-                        </motion.button>
-                      </motion.li>
-                    ))}
-                  </motion.ul>
-                </nav>
-              </div>
-
-              {/* Enhanced Bottom Contact Strip */}
-              <motion.div 
-                className="border-t border-foreground/20 p-6 sm:p-8 lg:p-12"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-              >
-                <div className="max-w-4xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
-                  <div className="flex flex-col sm:flex-row gap-6 text-foreground/70 text-sm">
-                    <motion.a 
-                      href="https://wa.me/916360414393"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="hover:text-foreground relative overflow-hidden group"
-                      whileHover={{ 
-                        scale: 1.05,
-                        color: '#1F5144',
-                        y: -2
-                      }}
-                      whileTap={{ scale: 0.95 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <motion.div
-                        className="absolute inset-0 bg-primary opacity-0 group-hover:opacity-10"
-                        initial={false}
-                        animate={{ x: ["-100%", "100%"] }}
-                        transition={{ duration: 0.6, ease: "easeOut" }}
-                      />
-                      WhatsApp: +91 636 0414 393
-                    </motion.a>
-                    <motion.a 
-                      href="mailto:info@cornerstonemedia.co.in"
-                      className="hover:text-foreground relative overflow-hidden group"
-                      whileHover={{ 
-                        scale: 1.05,
-                        color: '#1F5144',
-                        y: -2
-                      }}
-                      whileTap={{ scale: 0.95 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <motion.div
-                        className="absolute inset-0 bg-primary opacity-0 group-hover:opacity-10"
-                        initial={false}
-                        animate={{ x: ["-100%", "100%"] }}
-                        transition={{ duration: 0.6, ease: "easeOut" }}
-                      />
-                      Email: info@cornerstonemedia.co.in
-                    </motion.a>
-                  </div>
-                  <motion.div 
-                    className="text-foreground/50 italic font-serif text-lg"
-                    style={{letterSpacing: '0.02em'}}
-                    animate={{
-                      opacity: [0.5, 0.7, 0.5],
-                      scale: [1, 1.02, 1]
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                  >
-                    Vision Made Visible.
-                  </motion.div>
-                </div>
-              </motion.div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </motion.nav>
     </>
   )
 }

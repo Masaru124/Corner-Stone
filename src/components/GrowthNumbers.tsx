@@ -31,7 +31,7 @@ export default function GrowthNumbers() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16 sm:mb-20"
+          className="text-left mb-16 sm:mb-20"
         >
           <div className="font-medium text-sm tracking-wider uppercase mb-4" style={{color: '#369c82', letterSpacing: '0.35em'}}>
             What You Can Expect
@@ -39,7 +39,7 @@ export default function GrowthNumbers() {
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-light leading-none mb-6" style={{color: 'white', fontFamily: "'Cormorant Garamond', serif", fontWeight: '300', letterSpacing: '-0.02em'}}>
             Numbers Don't Lie
           </h2>
-          <p className="text-lg max-w-3xl mx-auto" style={{color: 'rgba(255,255,255,0.8)', fontWeight: '300'}}>
+          <p className="text-lg max-w-3xl" style={{color: 'rgba(255,255,255,0.8)', fontWeight: '300'}}>
             Our campaigns are strategically designed to deliver measurable, scalable brand growth. 
             Based on structured campaign execution and industry benchmarks, brands working with us can expect:
           </p>
@@ -47,7 +47,7 @@ export default function GrowthNumbers() {
 
         {/* Stats Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0" style={{gap: '2px'}}>
-          <div className="bg-white p-8 sm:p-8 text-center border" style={{borderColor: '#D8D3CC'}}>
+          <div className="bg-white p-8 sm:p-8 text-left border" style={{borderColor: '#D8D3CC'}}>
             <div className="text-4xl sm:text-5xl lg:text-6xl font-serif font-light leading-none mb-4" style={{color: '#1F5144', fontFamily: "'Cormorant Garamond', serif", fontWeight: '300', lineHeight: '1'}}>
               {stats[0].number}
             </div>
@@ -55,7 +55,7 @@ export default function GrowthNumbers() {
               {stats[0].label}
             </div>
           </div>
-          <div className="bg-white p-8 sm:p-8 text-center border" style={{borderColor: '#D8D3CC'}}>
+          <div className="bg-white p-8 sm:p-8 text-left border" style={{borderColor: '#D8D3CC'}}>
             <div className="text-4xl sm:text-5xl lg:text-6xl font-serif font-light leading-none mb-4" style={{color: '#1F5144', fontFamily: "'Cormorant Garamond', serif", fontWeight: '300', lineHeight: '1'}}>
               {stats[1].number}
             </div>
@@ -63,7 +63,7 @@ export default function GrowthNumbers() {
               {stats[1].label}
             </div>
           </div>
-          <div className="bg-white p-8 sm:p-8 text-center border" style={{borderColor: '#D8D3CC'}}>
+          <div className="bg-white p-8 sm:p-8 text-left border" style={{borderColor: '#D8D3CC'}}>
             <div className="text-4xl sm:text-5xl lg:text-6xl font-serif font-light leading-none mb-4" style={{color: '#1F5144', fontFamily: "'Cormorant Garamond', serif", fontWeight: '300', lineHeight: '1'}}>
               {stats[2].number}
             </div>
@@ -71,7 +71,7 @@ export default function GrowthNumbers() {
               {stats[2].label}
             </div>
           </div>
-          <div className="bg-white p-8 sm:p-8 text-center border" style={{borderColor: '#D8D3CC'}}>
+          <div className="bg-white p-8 sm:p-8 text-left border" style={{borderColor: '#D8D3CC'}}>
             <div className="text-4xl sm:text-5xl lg:text-6xl font-serif font-light leading-none mb-4" style={{color: '#1F5144', fontFamily: "'Cormorant Garamond', serif", fontWeight: '300', lineHeight: '1'}}>
               {stats[3].number}
             </div>

@@ -180,7 +180,7 @@ export default function Contact() {
                   onChange={handleInputChange}
                   placeholder="What do people call you?"
                   className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent bg-white"
-                  style={{borderColor: '#D8D3CC'}}
+                  style={{borderColor: '#D8D3CC', fontFamily: "'Cormorant Garamond', serif", fontWeight: '300'}}
                   required
                 />
               </div>
@@ -197,7 +197,7 @@ export default function Contact() {
                   onChange={handleInputChange}
                   placeholder="The name behind the work"
                   className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent bg-white"
-                  style={{borderColor: '#D8D3CC'}}
+                  style={{borderColor: '#D8D3CC', fontFamily: "'Cormorant Garamond', serif", fontWeight: '300'}}
                   required
                 />
               </div>
@@ -214,7 +214,7 @@ export default function Contact() {
                   onChange={handleInputChange}
                   placeholder="We'll reach out directly"
                   className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent bg-white"
-                  style={{borderColor: '#D8D3CC'}}
+                  style={{borderColor: '#D8D3CC', fontFamily: "'Cormorant Garamond', serif", fontWeight: '300'}}
                   required
                 />
               </div>
@@ -231,7 +231,7 @@ export default function Contact() {
                   onChange={handleInputChange}
                   placeholder="Where should we send the proposal?"
                   className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent bg-white"
-                  style={{borderColor: '#D8D3CC'}}
+                  style={{borderColor: '#D8D3CC', fontFamily: "'Cormorant Garamond', serif", fontWeight: '300'}}
                   required
                 />
               </div>
@@ -271,26 +271,23 @@ export default function Contact() {
                   placeholder="What does your brand do, and where do you want to take it?"
                   rows={4}
                   className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent bg-white resize-none"
-                  style={{borderColor: '#D8D3CC'}}
-                  required
+                  style={{borderColor: '#D8D3CC', fontFamily: "'Cormorant Garamond', serif", fontWeight: '300'}}
                 />
               </div>
 
               {/* Submit Button */}
-              <div className="pt-4">
-                <button
-                  type="submit"
-                  className="w-full px-8 py-4 text-white font-medium rounded-lg transition-colors duration-300 text-lg"
-                  style={{backgroundColor: '#1F5144'}}
-                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#369c82'}
-                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#1F5144'}
-                >
-                  Let's Build Something →
-                </button>
-                <p className="text-center italic text-sm mt-3" style={{color: '#888'}}>
-                  "We respond within 24 hours. Usually much faster."
-                </p>
-              </div>
+              <button
+                type="submit"
+                className="w-full px-8 py-4 text-white font-medium rounded-lg transition-colors duration-300 text-lg"
+                style={{backgroundColor: '#1F5144'}}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#369c82'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#1F5144'}
+              >
+                Let's Build Something →
+              </button>
+              <p className="text-center italic text-sm mt-3" style={{color: '#888'}}>
+                "We respond within 24 hours. Usually much faster."
+              </p>
             </form>
           </motion.div>
         </div>

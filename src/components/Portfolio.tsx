@@ -10,10 +10,8 @@ const projects = [
     type: 'Brand Identity + Packaging',
     description: 'A premium non-alcoholic beverage brand inspired by exotic flavors from around the world. We built complete visual identity — logo, color system, product packaging, and social media presence.',
     images: [
-      { src: '/Portfolio - CNRSTN/Climate/Drink Can Mockup (1).png', alt: 'Blue Mirage can - navy blue version' },
       { src: '/Portfolio - CNRSTN/Climate/Drink Can Mockup.png', alt: 'Blue Mirage can - green version' },
-      { src: '/Portfolio - CNRSTN/Climate/Soda Can Mock-Up 1 (Free) by MassDream.png', alt: 'Lifestyle shot - person with drink' },
-      { src: '/Portfolio - CNRSTN/Climate/Screenshot 2026-02-27 at 10.55.04 PM.png', alt: 'Color palette swatch' }
+      { src: '/Portfolio - CNRSTN/Climate/Drink Can Mockup (1).png', alt: 'Blue Mirage can - navy blue version' }
     ],
     tags: ['Brand Identity', 'Packaging Design', 'Visual Direction', 'Content Design']
   },
@@ -23,10 +21,7 @@ const projects = [
     type: 'Brand Redesign',
     description: 'A full brand redesign for an Indian alkaline water brand and e-commerce platform. New logo, typography system, brand messaging, and digital presence — rebuilt from scratch.',
     images: [
-      { src: '/Portfolio - CNRSTN/Gowaves/Corner Stone - Service Guide (3).png', alt: 'GoWaves brand guide and logo presentation' },
-      { src: '/Portfolio - CNRSTN/Gowaves/Corner Stone - Service Guide (3).png', alt: 'GoWaves brand guidelines' },
-      { src: '/Portfolio - CNRSTN/Gowaves/Corner Stone - Service Guide (3).png', alt: 'GoWaves logo variations' },
-      { src: '/Portfolio - CNRSTN/Gowaves/Corner Stone - Service Guide (3).png', alt: 'GoWaves brand applications' }
+      { src: '/Portfolio - CNRSTN/Gowaves/Corner Stone - Service Guide (3).png', alt: 'GoWaves brand guide and logo presentation' }
     ],
     tags: ['Brand Redesign', 'Logo Design', 'App Identity', 'Brand Guidelines']
   },
@@ -117,11 +112,13 @@ export default function Portfolio() {
                 </p>
 
                 {/* Image Grid */}
-                <div className="grid grid-cols-2 gap-4 mb-6">
+                <div className={`${project.images.length === 1 ? 'w-full' : 'grid grid-cols-2 gap-4'} mb-6`}>
                   {project.images.map((image, imageIndex) => (
                     <div
                       key={imageIndex}
-                      className="relative aspect-square bg-gray-100 rounded-lg overflow-hidden border"
+                      className={`relative ${
+                        project.id === 'thumbnails' ? 'aspect-video' : 'aspect-auto'
+                      } bg-gray-100 rounded-lg overflow-hidden border`}
                       style={{borderColor: '#D8D3CC'}}
                     >
                       <img 
