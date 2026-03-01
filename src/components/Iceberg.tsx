@@ -109,6 +109,7 @@ export default function Iceberg() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
               viewport={{ once: true }}
+              className="relative top-8"
             >
               <ul className="space-y-3">
                 {growthDrivers.map((item, index) => (

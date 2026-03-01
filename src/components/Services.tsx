@@ -48,7 +48,7 @@ export default function BraveServices() {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="text-center mb-20"
+          className="text-left mb-20"
         >
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-light" style={{ color: '#1F5144', letterSpacing: '-0.02em' }}>
             <LetterReveal 
@@ -117,22 +117,6 @@ export default function BraveServices() {
             </motion.div>
           ))}
         </div>
-
-        {/* Call to Action */}
-        <motion.div
-          className="text-center mt-24"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-        >
-          <button 
-            onClick={() => scrollToSection('portfolio')}
-            className="px-8 py-4 rounded-full border-2 font-light text-lg hover:bg-white/10 transition-all duration-300"
-            style={{ borderColor: '#1F5144', color: '#1F5144' }}
-          >
-            Explore Our Work
-          </button>
-        </motion.div>
       </div>
     </section>
   )
