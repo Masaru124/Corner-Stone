@@ -18,33 +18,9 @@ export default function Footer() {
             Corner Stone Design & Media · © 2025
           </div>
 
-          {/* Center */}
+          {/* Right */}
           <div className="text-primary font-serif text-lg italic">
             Vision Made Visible.
-          </div>
-
-          {/* Right */}
-          <div className="flex gap-6">
-            <a 
-              href="https://wa.me/916360414393"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-600 hover:text-primary transition-colors text-sm"
-            >
-              WhatsApp
-            </a>
-            <a 
-              href="#"
-              className="text-gray-600 hover:text-primary transition-colors text-sm"
-            >
-              LinkedIn
-            </a>
-            <a 
-              href="#"
-              className="text-gray-600 hover:text-primary transition-colors text-sm"
-            >
-              Instagram
-            </a>
           </div>
         </motion.div>
       </div>

@@ -91,7 +91,7 @@ export default function Hero() {
   }
 
   return (
-    <section id="hero" ref={ref} className="relative min-h-screen pt-58 pb-16" style={{backgroundColor: '#F8F8F6'}}>
+    <section id="hero" ref={ref} className="relative min-h-screen pb-16" style={{backgroundColor: '#F8F8F6'}}>
       {/* Animated background elements */}
       <motion.div 
         className="absolute inset-0"
@@ -170,7 +170,7 @@ export default function Hero() {
       >
         <div className="flex justify-between gap-8">
           {/* Text Content */}
-          <div className="flex-1 max-w-2xl">
+          <div className="flex-1">
             {/* Main Headline with staggered animation */}
             <motion.h1 
               className="text-7xl sm:text-8xl lg:text-9xl xl:text-10xl font-serif font-bold leading-none mb-8 text-left" 
@@ -184,7 +184,7 @@ export default function Hero() {
             {/* Enhanced subtext */}
             <motion.p 
               variants={textVariants}
-              className="text-xl sm:text-2xl lg:text-3xl font-light max-w-2xl text-left" 
+              className="text-xl sm:text-2xl lg:text-3xl font-light text-left" 
               style={{color: '#111111', letterSpacing: '-0.01em'}}
             >
               The Studio Behind Brands That Get Noticed.
@@ -193,7 +193,8 @@ export default function Hero() {
             {/* Enhanced CTA Buttons */}
             <motion.div
               variants={textVariants}
-              className="mt-12 flex items-center justify-between"
+              id="hero-button-container"
+              className="mt-12 flex w-full items-center gap-4"
             >
               {/* Left buttons */}
               <div className="flex flex-col sm:flex-row gap-4 items-start">
@@ -238,17 +239,15 @@ export default function Hero() {
                   See Our Work ↓
                 </motion.button>
               </div>
-            </motion.div>
-          </div>
 
-          {/* Logo on the complete right */}
-          <div className="flex-shrink-0 self-end mb-4">
-            <motion.img
-              variants={textVariants}
-              src="/Logo Kit - CNRSTN/Cornerstone Secondary Logo Green.png"
-              alt="Corner Stone Design & Media"
-              className="h-8 sm:h-10 lg:h-12 xl:h-20 w-auto"
-            />
+              <motion.div className="ml-auto shrink-0 self-center">
+                <img
+                  src="/Logo Kit - CNRSTN/Cornerstone Secondary Logo Green.png"
+                  alt="Corner Stone Design & Media"
+                  className="h-8 sm:h-10 lg:h-12 xl:h-20 w-auto"
+                />
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </motion.div>

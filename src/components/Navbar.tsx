@@ -105,7 +105,7 @@ export default function Navbar() {
   return (
     <>
       <motion.nav 
-        className="absolute top-32 right-8 z-50"
+        className="absolute top-6 right-8 z-50"
         style={{ 
           backgroundColor: navbarBackground,
           scale: navbarScale,
