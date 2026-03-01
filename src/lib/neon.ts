@@ -65,7 +65,7 @@ export async function listMediaUploads(): Promise<MediaUpload[]> {
   await ensureMediaUploadsTable()
   const sql = getSqlClient()
 
-  return sql<MediaUpload[]>`
+  const result = await sql`
     SELECT
       id,
       public_id,
@@ -80,13 +80,15 @@ export async function listMediaUploads(): Promise<MediaUpload[]> {
     FROM media_uploads
     ORDER BY created_at DESC
   `
+
+  return result as MediaUpload[]
 }
 
 export async function insertMediaUpload(input: InsertMediaUploadInput) {
   await ensureMediaUploadsTable()
   const sql = getSqlClient()
 
-  const result = await sql<MediaUpload[]>`
+  const result = (await sql`
     INSERT INTO media_uploads (
       public_id,
       secure_url,
@@ -118,7 +120,7 @@ export async function insertMediaUpload(input: InsertMediaUploadInput) {
       height,
       duration,
       created_at
-  `
+  `) as MediaUpload[]
 
   return result[0] ?? null
 }

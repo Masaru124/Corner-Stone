@@ -95,19 +95,23 @@ export async function listPortfolioPosts(includeHidden: boolean): Promise<Portfo
   const sql = getSqlClient()
 
   if (includeHidden) {
-    return sql<PortfolioPost[]>`
+    const result = await sql`
       SELECT id, title, type, description, images, tags, hidden, image_fit, image_size, image_columns, created_at
       FROM portfolio_posts
       ORDER BY created_at DESC
     `
+
+    return result as PortfolioPost[]
   }
 
-  return sql<PortfolioPost[]>`
+  const result = await sql`
     SELECT id, title, type, description, images, tags, hidden, image_fit, image_size, image_columns, created_at
     FROM portfolio_posts
     WHERE hidden = FALSE
     ORDER BY created_at DESC
   `
+
+  return result as PortfolioPost[]
 }
 
 export async function createPortfolioPost(input: CreatePortfolioPostInput): Promise<PortfolioPost> {
@@ -118,11 +122,11 @@ export async function createPortfolioPost(input: CreatePortfolioPostInput): Prom
   const imageSize = input.imageSize ?? 'medium'
   const imageColumns = typeof input.imageColumns === 'number' ? input.imageColumns : null
 
-  const result = await sql<PortfolioPost[]>`
+  const result = (await sql`
     INSERT INTO portfolio_posts (title, type, description, images, tags, image_fit, image_size, image_columns)
     VALUES (${input.title}, ${input.type}, ${input.description}, ${input.images}, ${input.tags}, ${imageFit}, ${imageSize}, ${imageColumns})
     RETURNING id, title, type, description, images, tags, hidden, image_fit, image_size, image_columns, created_at
-  `
+  `) as PortfolioPost[]
 
   if (!result[0]) {
     throw new Error('Failed to create post')
@@ -149,7 +153,7 @@ export async function updatePortfolioPost(id: number, input: UpdatePortfolioPost
 
   const safeImageColumns = imageColumns === undefined ? undefined : imageColumns
 
-  const result = await sql<PortfolioPost[]>`
+  const result = (await sql`
     UPDATE portfolio_posts
     SET
       title = COALESCE(${title}, title),
@@ -172,7 +176,7 @@ export async function updatePortfolioPost(id: number, input: UpdatePortfolioPost
       END
     WHERE id = ${id}
     RETURNING id, title, type, description, images, tags, hidden, image_fit, image_size, image_columns, created_at
-  `
+  `) as PortfolioPost[]
 
   return result[0] ?? null
 }
@@ -180,11 +184,11 @@ export async function updatePortfolioPost(id: number, input: UpdatePortfolioPost
 export async function deletePortfolioPost(id: number): Promise<boolean> {
   await ensurePortfolioPostsTable()
   const sql = getSqlClient()
-  const result = await sql<{ id: number }[]>`
+  const result = (await sql`
     DELETE FROM portfolio_posts
     WHERE id = ${id}
     RETURNING id
-  `
+  `) as Array<{ id: number }>
 
   return Boolean(result[0])
 }
