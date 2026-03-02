@@ -38,6 +38,7 @@ export function useWordReveal({
       words.forEach((word, idx) => {
         const span = document.createElement('span')
         span.textContent = word
+        span.className = 'word'
         span.style.display = 'inline-block'
         span.style.opacity = '0.2'
         span.style.marginRight = '0.25em'
@@ -52,7 +53,7 @@ export function useWordReveal({
         }
       })
 
-      const wordElements = element.querySelectorAll('span:not(:last-child)')
+      const wordElements = element.querySelectorAll('.word')
 
       gsap.to(wordElements, {
         opacity: 1,

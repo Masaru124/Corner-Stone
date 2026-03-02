@@ -1,6 +1,6 @@
 'use client'
 
-import { FormEvent, useEffect, useRef, useState } from 'react'
+import { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 
@@ -252,6 +252,14 @@ export default function AdminDashboard() {
     }
   }
 
+  function handleCreateImagesSelected(event: ChangeEvent<HTMLInputElement>) {
+    setSelectedImages(Array.from(event.target.files || []))
+  }
+
+  function triggerCreateImagePicker() {
+    createImageInputRef.current?.click()
+  }
+
   function beginEdit(post: PortfolioPost) {
     setEditingPostId(post.id)
     setEditDraft({
@@ -273,6 +281,21 @@ export default function AdminDashboard() {
     if (editImageInputRef.current) {
       editImageInputRef.current.value = ''
     }
+  }
+
+  function handleEditImagesSelected(event: ChangeEvent<HTMLInputElement>) {
+    if (!editDraft) {
+      return
+    }
+
+    setEditDraft({
+      ...editDraft,
+      newImages: Array.from(event.target.files || []),
+    })
+  }
+
+  function triggerEditImagePicker() {
+    editImageInputRef.current?.click()
   }
 
   async function saveEdit(post: PortfolioPost) {
@@ -409,7 +432,22 @@ export default function AdminDashboard() {
             <textarea value={description} onChange={(event) => setDescription(event.target.value)} className="w-full border rounded-lg px-3 py-2 min-h-28" style={{ borderColor: '#D0D0D0' }} placeholder="Description" required />
             <input type="text" value={tagsInput} onChange={(event) => setTagsInput(event.target.value)} className="w-full border rounded-lg px-3 py-2" style={{ borderColor: '#D0D0D0' }} placeholder="Tags: comma separated" />
 
-            <input ref={createImageInputRef} type="file" accept="image/*" multiple onChange={(event) => setSelectedImages(Array.from(event.target.files || []))} className="block w-full text-sm" />
+            <input
+              ref={createImageInputRef}
+              type="file"
+              accept="image/*"
+              multiple
+              onChange={handleCreateImagesSelected}
+              className="hidden"
+            />
+            <button
+              type="button"
+              onClick={triggerCreateImagePicker}
+              className="w-full sm:w-auto rounded-lg px-4 py-2 text-white"
+              style={{ backgroundColor: '#375A7F' }}
+            >
+              Select Images
+            </button>
             {selectedImages.length > 0 ? (
               <p className="text-sm wrap-break-word" style={{ color: '#4A4A4A' }}>
                 Selected: {selectedImages.map((file) => file.name).join(', ')}
@@ -542,14 +580,17 @@ export default function AdminDashboard() {
                               type="file"
                               accept="image/*"
                               multiple
-                              onChange={(event) =>
-                                setEditDraft({
-                                  ...editDraft,
-                                  newImages: Array.from(event.target.files || []),
-                                })
-                              }
-                              className="block w-full text-sm"
+                              onChange={handleEditImagesSelected}
+                              className="hidden"
                             />
+                            <button
+                              type="button"
+                              onClick={triggerEditImagePicker}
+                              className="w-full sm:w-auto rounded-lg px-4 py-2 text-white"
+                              style={{ backgroundColor: '#375A7F' }}
+                            >
+                              Select New Images
+                            </button>
                             {editDraft.newImages.length > 0 ? (
                               <p className="text-sm mt-2 wrap-break-word" style={{ color: '#4A4A4A' }}>
                                 New images to add: {editDraft.newImages.map((file) => file.name).join(', ')}

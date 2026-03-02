@@ -187,7 +187,7 @@ export default function Hero() {
             {/* Enhanced subtext */}
             <motion.p 
               variants={textVariants}
-              className="text-lg sm:text-2xl lg:text-3xl font-light text-left pr-2 sm:pr-0" 
+              className="text-base sm:text-lg lg:text-xl font-light text-left pr-2 sm:pr-0" 
               style={{color: '#111111', letterSpacing: '-0.01em'}}
             >
               The Studio Behind Brands That Get Noticed.

@@ -50,7 +50,7 @@ export default function BraveServices() {
           transition={{ duration: 1, ease: "easeOut" }}
           className="text-left mb-20"
         >
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-light" style={{ color: '#1F5144', letterSpacing: '-0.02em' }}>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold" style={{ color: '#1F5144', letterSpacing: '-0.02em' }}>
             <LetterReveal 
               scrub={1.5}
               start="top 85%"
@@ -64,8 +64,8 @@ export default function BraveServices() {
           <div className="mt-8 text-lg sm:text-xl" style={{ color: '#666' }}>
             <WordReveal 
               scrub={1}
-              start="top 75%"
-              end="bottom 45%"
+              start="top 85%"
+              end="bottom 55%"
             >
               We combine strategy, design, and technology to create experiences
             </WordReveal>
