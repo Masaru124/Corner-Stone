@@ -227,20 +227,6 @@ export default function Hero() {
                     Book a Discovery Call
                   </motion.span>
                 </motion.button>
-                
-                <motion.button
-                  onClick={() => scrollToSection('portfolio')}
-                  className="px-2 sm:px-6 py-2 sm:py-4 text-base sm:text-lg font-medium relative overflow-hidden group text-left"
-                  style={{color: '#1F5144'}}
-                  whileHover={{ 
-                    scale: 1.05,
-                    color: '#369c82'
-                  }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-                >
-                  See Our Work ↓
-                </motion.button>
               </div>
 
               <motion.div className="ml-0 sm:ml-auto shrink-0 self-start sm:self-center">

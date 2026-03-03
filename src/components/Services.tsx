@@ -50,7 +50,7 @@ export default function BraveServices() {
           transition={{ duration: 1, ease: "easeOut" }}
           className="text-left mb-20"
         >
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold" style={{ color: '#1F5144', letterSpacing: '-0.02em' }}>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold" style={{ color: '#1F5144', letterSpacing: '-0.02em', fontFamily: '"DM Sans", sans-serif' }}>
             <LetterReveal 
               scrub={1.5}
               start="top 85%"
