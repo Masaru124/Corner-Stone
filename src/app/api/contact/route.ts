@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    
+
     // Validate required fields
     if (!body.name || !body.email || !body.message) {
       return NextResponse.json(
@@ -58,14 +58,14 @@ export async function POST(request: NextRequest) {
 
     // Check if Google Apps Script call was successful
     if (response.ok && result.success) {
-      return NextResponse.json({ 
+      return NextResponse.json({
         success: true,
         message: 'Form submitted successfully and saved to Google Sheets'
       });
     } else {
       return NextResponse.json(
-        { 
-          success: false, 
+        {
+          success: false,
           error: 'Failed to save to Google Sheets',
           details: result.error || responseText
         },
@@ -75,9 +75,9 @@ export async function POST(request: NextRequest) {
 
   } catch (error) {
     console.error('API route error:', error);
-    
+
     return NextResponse.json(
-      { 
+      {
         success: false,
         error: 'Failed to submit form',
         message: error instanceof Error ? error.message : 'Unknown error'
