@@ -52,7 +52,7 @@ export default function Industries() {
               viewport={{ once: true }}
               className="bg-white rounded-xl p-6 sm:p-8 border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300"
             >
-              <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 leading-tight" style={{ fontFamily: '"DM Sans", sans-serif', fontWeight: '600' }}>
+              <h3 className="text-xl sm:text-2xl font-semibold leading-tight" style={{ fontFamily: '"DM Sans", sans-serif', fontWeight: '600', color: '#1F5144' }}>
                 {industry}
               </h3>
             </motion.div>
