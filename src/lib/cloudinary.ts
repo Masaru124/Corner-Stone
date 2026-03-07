@@ -80,17 +80,25 @@ function ensureCloudinaryConfigured() {
   cloudinaryConfigured = true
 }
 
-export function createCloudinaryUploadSignature(folder: string, timestamp: number) {
+export function createCloudinaryUploadSignature(folder: string, timestamp: number, publicId?: string, additionalParams?: Record<string, any>) {
   ensureCloudinaryConfigured()
   const { cloudName, apiKey, apiSecret } = getCloudinaryConfig()
 
-  const signature = cloudinary.utils.api_sign_request(
-    {
-      folder,
-      timestamp,
-    },
-    apiSecret
-  )
+  const params: Record<string, any> = {
+    folder,
+    timestamp,
+  }
+
+  if (publicId) {
+    params.public_id = publicId
+  }
+
+  // Add additional parameters like quality and format
+  if (additionalParams) {
+    Object.assign(params, additionalParams)
+  }
+
+  const signature = cloudinary.utils.api_sign_request(params, apiSecret)
 
   return {
     cloudName,
@@ -98,6 +106,8 @@ export function createCloudinaryUploadSignature(folder: string, timestamp: numbe
     timestamp,
     signature,
     folder,
+    publicId,
+    ...additionalParams,
   }
 }
 

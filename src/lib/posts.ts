@@ -144,14 +144,12 @@ export async function updatePortfolioPost(id: number, input: UpdatePortfolioPost
   const description = typeof input.description === 'string' ? input.description : null
   const hasTags = Array.isArray(input.tags)
   const tags = hasTags ? input.tags || [] : []
-  const hasImages = Array.isArray(input.images)
+  const hasImages = 'images' in input && Array.isArray(input.images)
   const images = hasImages ? input.images || [] : []
   const hidden = typeof input.hidden === 'boolean' ? input.hidden : null
   const imageFit = input.imageFit ?? null
   const imageSize = input.imageSize ?? null
   const imageColumns = typeof input.imageColumns === 'number' ? input.imageColumns : input.imageColumns === null ? null : undefined
-
-  const safeImageColumns = imageColumns === undefined ? undefined : imageColumns
 
   const result = (await sql`
     UPDATE portfolio_posts
@@ -159,21 +157,12 @@ export async function updatePortfolioPost(id: number, input: UpdatePortfolioPost
       title = COALESCE(${title}, title),
       type = COALESCE(${type}, type),
       description = COALESCE(${description}, description),
-      tags = CASE
-        WHEN ${hasTags} THEN ${tags}
-        ELSE tags
-      END,
-      images = CASE
-        WHEN ${hasImages} THEN ${images}
-        ELSE images
-      END,
+      tags = CASE WHEN ${hasTags} THEN ${tags} ELSE tags END,
+      images = CASE WHEN ${hasImages} THEN ${images} ELSE images END,
       hidden = COALESCE(${hidden}, hidden),
       image_fit = COALESCE(${imageFit}, image_fit),
       image_size = COALESCE(${imageSize}, image_size),
-      image_columns = CASE
-        WHEN ${safeImageColumns === undefined} THEN image_columns
-        ELSE ${safeImageColumns ?? null}
-      END
+      image_columns = COALESCE(${imageColumns}, image_columns)
     WHERE id = ${id}
     RETURNING id, title, type, description, images, tags, hidden, image_fit, image_size, image_columns, created_at
   `) as PortfolioPost[]

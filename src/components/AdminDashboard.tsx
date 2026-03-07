@@ -25,6 +25,7 @@ type SignatureResponse = {
   timestamp?: number
   signature?: string
   folder?: string
+  publicId?: string
   error?: string
 }
 
@@ -137,61 +138,151 @@ export default function AdminDashboard() {
       return []
     }
 
-    const signatureResponse = await fetch('/api/admin/cloudinary-signature', {
-      method: 'POST',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ folder: 'corner-stone/posts' }),
-    })
-
-    const signatureResult = (await signatureResponse.json()) as SignatureResponse
-    if (
-      !signatureResponse.ok ||
-      !signatureResult.success ||
-      !signatureResult.cloudName ||
-      !signatureResult.apiKey ||
-      !signatureResult.timestamp ||
-      !signatureResult.signature ||
-      !signatureResult.folder
-    ) {
-      throw new Error(signatureResult.error || 'Failed to generate upload signature')
-    }
-
     const uploadedUrls: string[] = []
 
-    for (const file of files) {
+    for (const originalFile of files) {
+      // Validate file
+      if (!originalFile.type.startsWith('image/')) {
+        throw new Error(`Invalid file type: ${originalFile.type}. Only images are allowed.`)
+      }
+
+      let file = originalFile
+
+      // Check if file is too large for Cloudinary's free tier (10MB)
+      if (file.size > 10 * 1024 * 1024) { // 10MB Cloudinary limit
+        // Try to compress the image
+        const compressedFile = await compressImage(file)
+        if (compressedFile.size > 10 * 1024 * 1024) {
+          throw new Error(`File too large even after compression: ${file.name}. Please use an image under 10MB.`)
+        }
+        file = compressedFile
+      }
+
+      // Sanitize filename for Cloudinary
+      const sanitizedName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_')
+      const timestamp = Date.now()
+      const publicId = `image_${timestamp}_${sanitizedName.replace(/\.[^/.]+$/, '')}`
+
+      // Get signature with public_id included
+      const signatureResponse = await fetch('/api/admin/cloudinary-signature', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          folder: 'corner-stone/posts',
+          publicId 
+        }),
+      })
+
+      const signatureResult = (await signatureResponse.json()) as SignatureResponse
+      if (
+        !signatureResponse.ok ||
+        !signatureResult.success ||
+        !signatureResult.cloudName ||
+        !signatureResult.apiKey ||
+        !signatureResult.timestamp ||
+        !signatureResult.signature ||
+        !signatureResult.folder
+      ) {
+        console.error('Signature error:', signatureResult)
+        throw new Error(signatureResult.error || 'Failed to generate upload signature')
+      }
+
       const formData = new FormData()
       formData.append('file', file)
       formData.append('api_key', signatureResult.apiKey)
       formData.append('timestamp', String(signatureResult.timestamp))
       formData.append('signature', signatureResult.signature)
       formData.append('folder', signatureResult.folder)
+      formData.append('public_id', publicId)
 
-      const uploadResponse = await fetch(
-        `https://api.cloudinary.com/v1_1/${signatureResult.cloudName}/image/upload`,
-        {
-          method: 'POST',
-          body: formData,
+      try {
+        const uploadResponse = await fetch(
+          `https://api.cloudinary.com/v1_1/${signatureResult.cloudName}/image/upload`,
+          {
+            method: 'POST',
+            body: formData,
+          }
+        )
+
+        const uploadResult = (await uploadResponse.json()) as {
+          secure_url?: string
+          error?: { message?: string }
+          message?: string
         }
-      )
 
-      const uploadResult = (await uploadResponse.json()) as {
-        secure_url?: string
-        error?: { message?: string }
-      }
+        if (!uploadResponse.ok) {
+          console.error('Cloudinary upload error:', uploadResult)
+          const errorMessage = uploadResult.error?.message || uploadResult.message || `Image upload failed (${uploadResponse.status})`
+          throw new Error(errorMessage)
+        }
 
-      if (!uploadResponse.ok) {
-        throw new Error(uploadResult.error?.message || `Image upload failed (${uploadResponse.status})`)
-      }
-
-      if (uploadResult.secure_url) {
-        uploadedUrls.push(uploadResult.secure_url)
+        if (uploadResult.secure_url) {
+          uploadedUrls.push(uploadResult.secure_url)
+        } else {
+          throw new Error('Upload succeeded but no secure_url returned')
+        }
+      } catch (error) {
+        console.error('Upload failed for file:', file.name, error)
+        throw error
       }
     }
 
     return uploadedUrls
+  }
+
+  async function compressImage(file: File): Promise<File> {
+    return new Promise((resolve, reject) => {
+      const canvas = document.createElement('canvas')
+      const ctx = canvas.getContext('2d')
+      if (!ctx) {
+        reject(new Error('Failed to get canvas context'))
+        return
+      }
+      
+      const img = document.createElement('img')
+
+      img.onload = () => {
+        // Calculate new dimensions (reduce to 80% of original)
+        const maxWidth = img.width * 0.8
+        const maxHeight = img.height * 0.8
+        let width = img.width
+        let height = img.height
+
+        if (width > maxWidth || height > maxHeight) {
+          const ratio = Math.min(maxWidth / width, maxHeight / height)
+          width *= ratio
+          height *= ratio
+        }
+
+        canvas.width = width
+        canvas.height = height
+
+        // Draw and compress image
+        ctx.drawImage(img, 0, 0, width, height)
+        
+        canvas.toBlob(
+          (blob) => {
+            if (blob) {
+              const compressedFile = new File([blob], file.name, {
+                type: 'image/jpeg',
+                lastModified: Date.now(),
+              })
+              resolve(compressedFile)
+            } else {
+              reject(new Error('Failed to compress image'))
+            }
+          },
+          'image/jpeg',
+          0.8 // 80% quality
+        )
+      }
+
+      img.onerror = () => reject(new Error('Failed to load image'))
+      img.src = URL.createObjectURL(file)
+    })
   }
 
   async function handleCreatePost(event: FormEvent<HTMLFormElement>) {
@@ -312,27 +403,41 @@ export default function AdminDashboard() {
     setMessage('')
 
     try {
+      console.log('Starting save for post:', post.id)
+      console.log('New images to upload:', editDraft.newImages.length)
+      console.log('Existing images:', editDraft.existingImages)
+
       const newUploadedImages = await uploadImagesToCloudinary(editDraft.newImages)
+      console.log('Uploaded images:', newUploadedImages)
+      
       const mergedImages = [...editDraft.existingImages, ...newUploadedImages]
+      console.log('Merged images:', mergedImages)
+
+      const updateData = {
+        title: editDraft.title.trim(),
+        type: editDraft.type.trim(),
+        description: editDraft.description.trim(),
+        tags: inputToTags(editDraft.tagsInput),
+        images: mergedImages,
+        imageFit: editDraft.imageFit,
+        imageSize: editDraft.imageSize,
+        imageColumns: editDraft.imageColumns === 'auto' ? null : Number(editDraft.imageColumns),
+      }
+      
+      console.log('Update data:', updateData)
 
       const response = await fetch(`/api/admin/posts/${post.id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          title: editDraft.title.trim(),
-          type: editDraft.type.trim(),
-          description: editDraft.description.trim(),
-          tags: inputToTags(editDraft.tagsInput),
-          images: mergedImages,
-          imageFit: editDraft.imageFit,
-          imageSize: editDraft.imageSize,
-          imageColumns: editDraft.imageColumns === 'auto' ? null : Number(editDraft.imageColumns),
-        }),
+        body: JSON.stringify(updateData),
       })
 
+      console.log('Response status:', response.status)
       const result = await response.json()
+      console.log('Response result:', result)
+
       if (!response.ok || !result.success) {
         throw new Error(result.error || 'Failed to update post')
       }
@@ -341,6 +446,7 @@ export default function AdminDashboard() {
       cancelEdit()
       setMessage('Post updated successfully')
     } catch (error) {
+      console.error('Save error:', error)
       setMessage(error instanceof Error ? error.message : 'Failed to update post')
     } finally {
       setIsSubmitting(false)

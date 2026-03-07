@@ -12,9 +12,10 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json().catch(() => ({}))
     const folder = String(body?.folder || DEFAULT_UPLOAD_FOLDER)
+    const publicId = body?.publicId ? String(body.publicId) : undefined
     const timestamp = Math.floor(Date.now() / 1000)
 
-    const signatureData = createCloudinaryUploadSignature(folder, timestamp)
+    const signatureData = createCloudinaryUploadSignature(folder, timestamp, publicId)
     return NextResponse.json({ success: true, ...signatureData })
   } catch (error) {
     return NextResponse.json(
