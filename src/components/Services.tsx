@@ -12,12 +12,12 @@ const services = [
   {
     id: '02',
     name: 'Social Media Management',
-    description: 'Social media is one of most powerful platforms for building awareness and trust. We manage your brand\'s social media presence by planning content, designing creative posts and reels, writing captions, and maintaining consistent visual identity. Our focus is to keep your brand active, engaging, and visible so that your audience stays connected and your brand grows online.'
+    description: "Social media is one of most powerful platforms for building awareness and trust. We manage your brand's social media presence by planning content, designing creative posts and reels, writing captions, and maintaining consistent visual identity. Our focus is to keep your brand active, engaging, and visible so that your audience stays connected and your brand grows online."
   },
   {
     id: '03',
     name: 'Web Design & Development',
-    description: 'A website is digital home of your brand. We design and develop modern, responsive, and user-friendly websites that clearly communicate your brand and services. Our websites are built not just to look good but also to guide visitors toward action — whether it\'s contacting you, making an enquiry, or learning more about your business.'
+    description: "A website is digital home of your brand. We design and develop modern, responsive, and user-friendly websites that clearly communicate your brand and services. Our websites are built not just to look good but also to guide visitors toward action — whether it's contacting you, making an enquiry, or learning more about your business."
   },
   {
     id: '04',
@@ -39,7 +39,6 @@ const services = [
 export default function Services() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: false, amount: 0.1 })
-
   const [hoveredService, setHoveredService] = useState<string | null>(null)
 
   const scrollToSection = (sectionId: string) => {
@@ -50,31 +49,30 @@ export default function Services() {
   }
 
   return (
-    <section id="services" ref={ref} className="relative min-h-screen flex items-center justify-start bg-white">
-      {/* Background with parallax */}
+    <section id="services" ref={ref} className="relative min-h-screen flex items-center justify-center bg-white">
+      {/* Background */}
       <div className="absolute inset-0 z-0" style={{ background: `linear-gradient(135deg, #F8F8F6 0%, #E8E8E8 100%)` }} />
-      
+
       {/* Content */}
-      <div className="relative z-10 max-w-6xl px-4 sm:px-6 lg:px-12 py-20">
-        {/* Section Header */}
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-12 py-20">
+
+        {/* Section Header — centered */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="text-left mb-20"
+          className="text-center mb-20"
         >
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold" style={{ color: '#1F5144', letterSpacing: '-0.02em', fontFamily: '"DM Sans", sans-serif' }}>
             Our Services
           </h2>
-          
-          {/* Subtitle */}
-          <div className="mt-8 text-lg sm:text-xl" style={{ color: '#666' }}>
+          <div className="mt-8 text-lg sm:text-xl max-w-2xl mx-auto" style={{ color: '#666' }}>
             <p>Together, these services help brands build strong foundations, grow their online presence, and turn visibility into real business results.</p>
           </div>
         </motion.div>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Services Grid — centered */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
           {services.map((service, index) => (
             <motion.div
               key={service.id}
@@ -82,20 +80,17 @@ export default function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="group relative bg-white border border-gray-200 rounded-lg p-6 cursor-pointer transition-all duration-300 hover:shadow-lg hover:border-gray-300"
+              className="group relative w-full bg-white border border-gray-200 rounded-lg p-6 cursor-pointer transition-all duration-300 hover:shadow-lg hover:border-gray-300"
               onMouseEnter={() => setHoveredService(service.id)}
               onMouseLeave={() => setHoveredService(null)}
-              whileHover={{ 
+              whileHover={{
                 scale: 1.02,
                 transition: { duration: 0.2 }
               }}
             >
               {/* Service Number */}
               <div className="absolute top-4 left-4 opacity-20">
-                <span 
-                  className="text-2xl md:text-3xl font-serif font-light" 
-                  style={{ color: '#1F5144' }}
-                >
+                <span className="text-2xl md:text-3xl font-serif font-light" style={{ color: '#1F5144' }}>
                   {service.id}
                 </span>
               </div>
@@ -105,10 +100,10 @@ export default function Services() {
                 {service.name}
               </h3>
 
-              {/* Service Description - Expandable */}
+              {/* Description — expands on hover */}
               <motion.div
                 initial={{ height: 0, opacity: 0 }}
-                animate={{ 
+                animate={{
                   height: hoveredService === service.id ? "auto" : 0,
                   opacity: hoveredService === service.id ? 1 : 0
                 }}
@@ -120,7 +115,7 @@ export default function Services() {
                 </p>
               </motion.div>
 
-              {/* Hover Indicator */}
+              {/* Bottom border indicator */}
               <motion.div
                 className="absolute bottom-0 left-0 right-0 h-0.5"
                 style={{ backgroundColor: '#1F5144' }}
@@ -132,7 +127,7 @@ export default function Services() {
           ))}
         </div>
 
-        {/* Call to Action */}
+        {/* CTA — centered */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -140,7 +135,7 @@ export default function Services() {
           viewport={{ once: true }}
           className="text-center mt-16"
         >
-          <button 
+          <button
             onClick={() => scrollToSection('portfolio')}
             className="px-8 py-4 rounded-full border-2 font-medium text-lg transition-all duration-300"
             style={{ borderColor: '#1F5144', color: '#1F5144' }}

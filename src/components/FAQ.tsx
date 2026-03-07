@@ -59,7 +59,7 @@ export default function FAQ() {
         }}></div>
       </div>
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -76,29 +76,24 @@ export default function FAQ() {
           </p>
         </motion.div>
 
-        {/* FAQ Items */}
-        <div className="space-y-6 sm:space-y-8">
+        {/* FAQ Items - Two Column Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {faqs.map((faq, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{ duration: 0.6, delay: index * 0.05 }}
               viewport={{ once: true }}
-              className="bg-gray-50 rounded-lg p-6 sm:p-8 border border-gray-200"
+              className="bg-white rounded-xl p-6 sm:p-8 border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300"
             >
-              {/* Question */}
-              <div className="flex items-start gap-3 mb-4">
-                <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white font-semibold text-sm" style={{ backgroundColor: '#1F5144' }}>
-                  {index + 1}
-                </div>
-                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 leading-tight">
-                  {faq.question}
-                </h3>
-              </div>
+              {/* Question with larger text */}
+              <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 leading-tight mb-4" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: '600' }}>
+                {faq.question}
+              </h3>
               
               {/* Answer */}
-              <p className="text-gray-700 leading-relaxed pl-11">
+              <p className="text-gray-700 leading-relaxed text-base" style={{ lineHeight: '1.7' }}>
                 {faq.answer}
               </p>
             </motion.div>
