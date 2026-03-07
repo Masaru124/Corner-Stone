@@ -119,6 +119,7 @@ export default function Navbar() {
                 {[
                   { name: 'Work', section: 'portfolio' },
                   { name: 'What We Do', section: 'services' },
+                  { name: 'Industries', section: 'industries' },
                   { name: 'Contact', section: 'contact' }
                 ].map((item, i) => (
                   <motion.button
