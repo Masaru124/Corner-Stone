@@ -3,6 +3,7 @@ import Services from '@/components/Services'
 import Portfolio from '@/components/Portfolio'
 import GrowthNumbers from '@/components/GrowthNumbers'
 import Iceberg from '@/components/Iceberg'
+import FAQ from '@/components/FAQ'
 import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
 
@@ -14,6 +15,7 @@ export default function Home() {
       <Iceberg />
       <Portfolio />
       <GrowthNumbers />
+      <FAQ />
       <Contact />
       <Footer />
     </div>

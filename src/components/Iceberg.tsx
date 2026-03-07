@@ -1,6 +1,7 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
+import { useRef } from 'react'
 
 const visibleItems = [
   'Logo & Visual Identity',
@@ -29,21 +30,22 @@ const icebergLabelStyle = {
 }
 
 export default function Iceberg() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: false, amount: 0.1 })
   return (
     <section
-      className="relative min-h-screen py-10 sm:py-20 lg:py-32 overflow-hidden"
+      className="hidden sm:block relative min-h-screen py-10 sm:py-20 lg:py-32 overflow-hidden"
       style={{ backgroundColor: '#1F5144' }}
     >
+      {/* Background */}
+      <div className="absolute inset-0" style={{ backgroundColor: '#1F5144' }} />
+
       {/* Visible Label - Top Left */}
-      <motion.div
+      <div
         className="absolute top-3 sm:top-14 left-2 sm:left-8 z-20"
-        initial={{ opacity: 0, x: -30 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
       >
         <span className="text-white text-base sm:text-2xl lg:text-4xl font-serif italic">Visible</span>
-      </motion.div>
+      </div>
 
       {/* Invisible Label - Bottom Left */}
       <motion.div
@@ -82,7 +84,7 @@ export default function Iceberg() {
               <div className="absolute top-[30%] left-0 right-0 flex justify-center px-2">
                 <span
                   className="text-white/80 uppercase text-center leading-tight"
-                  style={{ ...icebergLabelStyle, fontSize: 'clamp(3px, 1.5vw, 18px)' }}
+                  style={{ ...icebergLabelStyle, fontSize: 'clamp(5px, 2.2vw, 18px)' }}
                 >
                   WHAT PEOPLE SEE
                 </span>
@@ -92,13 +94,13 @@ export default function Iceberg() {
               <div className="absolute top-[67%] left-0 right-0 flex flex-col items-center px-2">
                 <span
                   className="text-white/80 uppercase text-center leading-tight"
-                  style={{ ...icebergLabelStyle, fontSize: 'clamp(3px, 1.5vw, 18px)' }}
+                  style={{ ...icebergLabelStyle, fontSize: 'clamp(5px, 2.2vw, 18px)' }}
                 >
                   WHAT ACTUALLY
                 </span>
                 <span
                   className="text-white/80 uppercase text-center leading-tight"
-                  style={{ ...icebergLabelStyle, fontSize: 'clamp(3px, 1.5vw, 18px)' }}
+                  style={{ ...icebergLabelStyle, fontSize: 'clamp(5px, 2.2vw, 18px)' }}
                 >
                   DRIVES GROWTH
                 </span>

@@ -1,30 +1,12 @@
 'use client'
 
-import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-motion'
-import { useEffect, useState, useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
+import { useRef } from 'react'
 import Navbar from '@/components/Navbar'
 
 export default function Hero() {
-  const [scrollY, setScrollY] = useState(0)
-  const { scrollYProgress } = useScroll()
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true })
-  
-  // Smooth scroll value for parallax
-  const smoothScrollY = useSpring(scrollY, { stiffness: 400, damping: 30 })
-  
-  // Parallax effects - more dramatic
-  const textY = useTransform(scrollYProgress, [0, 1], [0, -120])
-  const opacity = useTransform(scrollYProgress, [0, 0.4], [1, 0])
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.85])
-  const rotateX = useTransform(scrollYProgress, [0, 0.5], [0, 15])
-  const blur = useTransform(scrollYProgress, [0, 0.3], [0, 8])
-
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
@@ -160,13 +142,6 @@ export default function Hero() {
       {/* Main content with enhanced animations */}
       <motion.div 
         className="relative z-10 text-left px-4 sm:px-8 lg:px-12 max-w-full w-full"
-        style={{ 
-          y: textY, 
-          opacity, 
-          scale,
-          rotateX,
-          filter: `blur(${blur}px)`
-        }}
         variants={containerVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
