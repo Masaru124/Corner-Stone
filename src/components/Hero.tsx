@@ -98,7 +98,8 @@ export default function Hero() {
         />
         
         {/* Floating particles */}
-        {[...Array(8)].map((_, i) => (
+        <div className="will-change-transform gpu-accelerate">
+          {[...Array(8)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-3 h-3 rounded-full"
@@ -121,9 +122,11 @@ export default function Hero() {
             }}
           />
         ))}
+        </div>
 
         {/* Glowing orbs */}
-        {[...Array(3)].map((_, i) => (
+        <div className="will-change-transform gpu-accelerate">
+          {[...Array(3)].map((_, i) => (
           <motion.div
             key={`glow-${i}`}
             className="absolute w-32 h-32 rounded-full blur-3xl"
@@ -137,6 +140,7 @@ export default function Hero() {
             animate="animate"
           />
         ))}
+        </div>
       </motion.div>
       
       {/* Main content with enhanced animations */}
@@ -253,23 +257,25 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.5 }}
-        className="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-200 overflow-hidden z-20"
+        className="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-200 overflow-hidden z-20 contain-animated"
         style={{borderColor: '#D8D3CC'}}
       >
-        <motion.div
-          animate={{
-            x: [0, -1000]
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-          className="flex whitespace-nowrap py-3 text-sm font-medium tracking-wider"
-          style={{color: '#333', letterSpacing: '0.15em'}}
-        >
+        <div className="will-change-transform gpu-accelerate overflow-hidden">
+          <motion.div
+            animate={{
+              x: [0, -1000]
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            className="flex whitespace-nowrap py-3 text-sm font-medium tracking-wider"
+            style={{color: '#333', letterSpacing: '0.15em'}}
+          >
           BRAND STRATEGY • VISUAL IDENTITY • SOCIAL MEDIA • CONTENT DESIGN • WEB DEVELOPMENT • INFLUENCER MARKETING • CAMPAIGNS • BRAND STRATEGY • VISUAL IDENTITY • SOCIAL MEDIA • CONTENT DESIGN • WEB DEVELOPMENT • INFLUENCER MARKETING • CAMPAIGNS
-        </motion.div>
+          </motion.div>
+        </div>
       </motion.div>
     </section>
   )

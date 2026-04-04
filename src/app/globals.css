@@ -19,6 +19,13 @@
   scroll-behavior: smooth;
 }
 
+/* Enable smooth scrolling but respect motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto;
+  }
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
@@ -86,13 +93,55 @@ body {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Hover effects */
-.hover-lift {
-  transition: transform 0.3s ease;
+/* Animation Performance Hints */
+.will-change-transform {
+  will-change: transform;
 }
 
-.hover-lift:hover {
-  transform: translateY(-2px);
+.will-change-opacity {
+  will-change: opacity;
+}
+
+.will-change-filter {
+  will-change: filter;
+}
+
+.gpu-accelerate {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* CSS Containment for animated sections */
+.contain-animated {
+  contain: layout style paint;
+}
+
+/* Respect user's motion preferences while keeping animations intact */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  /* Re-enable essential entrance animations but make them instant */
+  .animate-fade-in-up,
+  .animate-slide-in-left,
+  .animate-text-reveal {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.service-card {
+  contain: layout style;
+}
+
+.service-card:hover {
+  contain: layout style paint;
 }
 
 /* Text selection */

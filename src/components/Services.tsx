@@ -1,7 +1,7 @@
 'use client'
 
-import { motion, useInView } from 'framer-motion'
-import { useRef, useState } from 'react'
+import { motion } from 'framer-motion'
+import { useRef } from 'react'
 
 const services = [
   {
@@ -38,8 +38,6 @@ const services = [
 
 export default function Services() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: false, amount: 0.1 })
-  const [hoveredService, setHoveredService] = useState<string | null>(null)
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
@@ -61,6 +59,7 @@ export default function Services() {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
+          viewport={{ once: true }}
           className="text-center mb-20"
         >
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold" style={{ color: '#1F5144', letterSpacing: '-0.02em', fontFamily: '"DM Sans", sans-serif' }}>
@@ -80,9 +79,7 @@ export default function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="group relative w-full bg-white border border-gray-200 rounded-lg p-6 cursor-pointer transition-all duration-300 hover:shadow-lg hover:border-gray-300"
-              onMouseEnter={() => setHoveredService(service.id)}
-              onMouseLeave={() => setHoveredService(null)}
+              className="group relative w-full bg-white border border-gray-200 rounded-lg p-6 cursor-pointer transition-all duration-300 hover:shadow-lg hover:border-gray-300 service-card"
               whileHover={{
                 scale: 1.02,
                 transition: { duration: 0.2 }
@@ -100,28 +97,17 @@ export default function Services() {
                 {service.name}
               </h3>
 
-              {/* Description — expands on hover */}
-              <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{
-                  height: hoveredService === service.id ? "auto" : 0,
-                  opacity: hoveredService === service.id ? 1 : 0
-                }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-                className="overflow-hidden"
-              >
+              {/* Description — expands on hover using CSS */}
+              <div className="overflow-hidden max-h-0 group-hover:max-h-96 transition-all duration-300 ease-in-out">
                 <p className="text-gray-600 leading-relaxed" style={{ fontSize: '14px' }}>
                   {service.description}
                 </p>
-              </motion.div>
+              </div>
 
-              {/* Bottom border indicator */}
-              <motion.div
-                className="absolute bottom-0 left-0 right-0 h-0.5"
+              {/* Bottom border indicator using CSS */}
+              <div
+                className="absolute bottom-0 left-0 right-0 h-0.5 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
                 style={{ backgroundColor: '#1F5144' }}
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: hoveredService === service.id ? 1 : 0 }}
-                transition={{ duration: 0.3 }}
               />
             </motion.div>
           ))}

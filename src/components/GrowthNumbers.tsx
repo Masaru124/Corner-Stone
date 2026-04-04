@@ -23,7 +23,7 @@ const stats = [
 
 export default function GrowthNumbers() {
   return (
-    <section id="growth" className="py-20 sm:py-24 lg:py-32" style={{backgroundColor: '#1F5144'}}>
+    <section id="growth" className="py-20 sm:py-24 lg:py-32 contain-animated" style={{backgroundColor: '#1F5144'}}>
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Section Header */}
         <motion.div
@@ -47,38 +47,24 @@ export default function GrowthNumbers() {
 
         {/* Stats Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0" style={{gap: '2px'}}>
-          <div className="bg-white p-8 sm:p-8 text-left border" style={{borderColor: '#D8D3CC'}}>
-            <div className="text-4xl sm:text-5xl lg:text-6xl font-serif font-light leading-none mb-4" style={{color: '#1F5144', fontFamily: "'Cormorant Garamond', serif", fontWeight: '300', lineHeight: '1'}}>
-              {stats[0].number}
-            </div>
-            <div className="text-sm leading-relaxed" style={{color: '#666', fontWeight: '300', lineHeight: '1.5'}}>
-              {stats[0].label}
-            </div>
-          </div>
-          <div className="bg-white p-8 sm:p-8 text-left border" style={{borderColor: '#D8D3CC'}}>
-            <div className="text-4xl sm:text-5xl lg:text-6xl font-serif font-light leading-none mb-4" style={{color: '#1F5144', fontFamily: "'Cormorant Garamond', serif", fontWeight: '300', lineHeight: '1'}}>
-              {stats[1].number}
-            </div>
-            <div className="text-sm leading-relaxed" style={{color: '#666', fontWeight: '300', lineHeight: '1.5'}}>
-              {stats[1].label}
-            </div>
-          </div>
-          <div className="bg-white p-8 sm:p-8 text-left border" style={{borderColor: '#D8D3CC'}}>
-            <div className="text-4xl sm:text-5xl lg:text-6xl font-serif font-light leading-none mb-4" style={{color: '#1F5144', fontFamily: "'Cormorant Garamond', serif", fontWeight: '300', lineHeight: '1'}}>
-              {stats[2].number}
-            </div>
-            <div className="text-sm leading-relaxed" style={{color: '#666', fontWeight: '300', lineHeight: '1.5'}}>
-              {stats[2].label}
-            </div>
-          </div>
-          <div className="bg-white p-8 sm:p-8 text-left border" style={{borderColor: '#D8D3CC'}}>
-            <div className="text-4xl sm:text-5xl lg:text-6xl font-serif font-light leading-none mb-4" style={{color: '#1F5144', fontFamily: "'Cormorant Garamond', serif", fontWeight: '300', lineHeight: '1'}}>
-              {stats[3].number}
-            </div>
-            <div className="text-sm leading-relaxed" style={{color: '#666', fontWeight: '300', lineHeight: '1.5'}}>
-              {stats[3].label}
-            </div>
-          </div>
+          {stats.map((stat, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="bg-white p-8 sm:p-8 text-left border gpu-accelerate"
+              style={{borderColor: '#D8D3CC'}}
+            >
+              <div className="text-4xl sm:text-5xl lg:text-6xl font-serif font-light leading-none mb-4" style={{color: '#1F5144', fontFamily: "'Cormorant Garamond', serif", fontWeight: '300', lineHeight: '1'}}>
+                {stat.number}
+              </div>
+              <div className="text-sm leading-relaxed" style={{color: '#666', fontWeight: '300', lineHeight: '1.5'}}>
+                {stat.label}
+              </div>
+            </motion.div>
+          ))}
         </div>
 
         {/* Footnote */}

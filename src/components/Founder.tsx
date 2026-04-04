@@ -43,7 +43,7 @@ export default function Founder() {
           className="flex justify-center mb-12"
         >
           <motion.div 
-            className="relative rounded-full overflow-hidden shadow-2xl cursor-pointer" 
+            className="relative rounded-full overflow-hidden shadow-2xl cursor-pointer will-change-transform gpu-accelerate" 
             style={{ width: '300px', height: '300px' }}
             whileHover={{ 
               scale: 1.05,
@@ -60,7 +60,7 @@ export default function Founder() {
             <motion.img
               src="/founder.jpeg"
               alt="Founder of Corner Stone Design & Media"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover will-change-filter"
               style={{ transformStyle: 'preserve-3d' }}
               whileHover={{
                 filter: "brightness(1.15) contrast(1.1) saturate(1.2)",
@@ -96,7 +96,7 @@ export default function Founder() {
 
             {/* Particle trail effect */}
             <motion.div
-              className="absolute inset-0 pointer-events-none"
+              className="absolute inset-0 pointer-events-none will-change-transform"
               initial={{ opacity: 0 }}
               whileHover={{ opacity: 1 }}
               transition={{ duration: 0.3 }}
@@ -104,7 +104,7 @@ export default function Founder() {
               {[...Array(8)].map((_, i) => (
                 <motion.div
                   key={i}
-                  className="absolute w-1.5 h-1.5 rounded-full"
+                  className="absolute w-1.5 h-1.5 rounded-full will-change-transform"
                   style={{ 
                     backgroundColor: '#369c82',
                     left: `${15 + i * 10}%`,

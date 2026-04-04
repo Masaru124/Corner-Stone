@@ -81,7 +81,7 @@ export default function Portfolio() {
   }, [])
 
   return (
-    <section id="portfolio" className="py-20 sm:py-24 lg:py-32" style={{ backgroundColor: '#F8F8F6' }}>
+    <section id="portfolio" className="py-20 sm:py-24 lg:py-32 contain-animated" style={{ backgroundColor: '#F8F8F6' }}>
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -139,7 +139,7 @@ export default function Portfolio() {
                   </span>
                 </div>
 
-                <div className="p-6 sm:p-8">
+                <div className="p-6 sm:p-8 contain">
                   <p className="leading-relaxed mb-6" style={{ color: '#444', fontWeight: '300', fontSize: '15px' }}>
                     {project.description}
                   </p>
@@ -149,7 +149,7 @@ export default function Portfolio() {
                       {project.images.map((imageUrl, imageIndex) => (
                         <div
                           key={`${project.id}-${imageIndex}`}
-                          className={`relative ${getImageHeightClass(project.image_size || 'medium')} bg-gray-100 rounded-lg overflow-hidden border`}
+                          className={`relative ${getImageHeightClass(project.image_size || 'medium')} bg-gray-100 rounded-lg overflow-hidden border gpu-accelerate`}
                           style={{ borderColor: '#D8D3CC' }}
                         >
                           <img

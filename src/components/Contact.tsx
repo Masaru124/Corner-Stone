@@ -92,7 +92,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="py-20 sm:py-24 lg:py-32" style={{backgroundColor: '#F8F8F6'}}>
+    <section id="contact" className="py-20 sm:py-24 lg:py-32 contain-animated" style={{backgroundColor: '#F8F8F6'}}>
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
           {/* Left Column */}
@@ -120,7 +120,7 @@ export default function Contact() {
             {/* Contact Details */}
             <div className="flex gap-6">
               <a 
-                href="https://wa.me/917019090277"
+                href="https://wa.me/916360414393"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-12 h-12 rounded-full flex items-center justify-center transition-transform hover:scale-110"

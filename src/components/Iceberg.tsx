@@ -34,7 +34,7 @@ export default function Iceberg() {
   const isInView = useInView(ref, { once: false, amount: 0.1 })
   return (
     <section
-      className="hidden sm:block relative min-h-screen py-10 sm:py-20 lg:py-32 overflow-hidden"
+      className="hidden sm:block relative min-h-screen py-10 sm:py-20 lg:py-32 overflow-hidden contain-animated"
       style={{ backgroundColor: '#1F5144' }}
     >
       {/* Background */}
@@ -67,7 +67,7 @@ export default function Iceberg() {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1 }}
             viewport={{ once: true }}
-            className="relative flex-shrink-0"
+            className="relative flex-shrink-0 gpu-accelerate"
             style={{ width: '40%', maxWidth: '400px' }}
           >
             <div className="relative w-full">

@@ -50,7 +50,7 @@ export default function FAQ() {
   }
 
   return (
-    <section id="faq" ref={ref} className="relative py-20 sm:py-24 lg:py-32 overflow-hidden bg-white">
+    <section id="faq" ref={ref} className="relative py-20 sm:py-24 lg:py-32 overflow-hidden bg-white contain-animated">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -83,9 +83,9 @@ export default function FAQ() {
               key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.05 }}
+              transition={{ duration: 0.6, delay: Math.min(index * 0.05, 0.3) }}
               viewport={{ once: true }}
-              className="bg-white rounded-xl p-6 sm:p-8 border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300"
+              className="bg-white rounded-xl p-6 sm:p-8 border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300 gpu-accelerate"
             >
               {/* Question with larger text */}
               <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 leading-tight mb-4" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: '600' }}>
