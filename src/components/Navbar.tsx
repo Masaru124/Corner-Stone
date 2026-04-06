@@ -111,7 +111,7 @@ export default function Navbar() {
         <div className="flex flex-col items-end gap-3 sm:gap-4">
           <motion.div 
             className="hidden lg:flex flex-col items-end gap-5 p-6 rounded-xl"
-            style={{backgroundColor: '#F8F8F6', borderColor: '#D8D3CC'}}
+            style={{backgroundColor: 'transparent', borderColor: 'transparent'}}
             variants={containerVariants}
             initial="hidden"
             animate="visible"
