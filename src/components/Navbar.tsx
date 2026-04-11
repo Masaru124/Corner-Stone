@@ -1,25 +1,20 @@
 'use client'
 
 import { useState } from 'react'
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
+import Link from 'next/link'
+import { motion, AnimatePresence } from 'framer-motion'
+
+const navLinks = [
+  { name: 'Home', href: '/' },
+  { name: 'Services', href: '/services' },
+  { name: 'Work', href: '/portfolio' },
+  { name: 'Industries', href: '/industries' },
+  { name: 'About', href: '/about' },
+  { name: 'Contact', href: '/contact' },
+]
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const { scrollY } = useScroll()
-  
-  // Scroll-based animations
-  const navbarBackground = useTransform(scrollY, [0, 100], ['rgba(248, 248, 246, 0.95)', 'rgba(248, 248, 246, 0.98)'])
-  const navbarScale = useTransform(scrollY, [0, 100], [1.02, 1])
-  const navbarY = useTransform(scrollY, [0, 50], [0, 0])
-  const shadowIntensity = useTransform(scrollY, [0, 100], [0, 0.3])
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-    }
-    setIsMenuOpen(false)
-  }
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -97,18 +92,9 @@ export default function Navbar() {
 
   return (
     <>
-      <motion.nav 
-        className="absolute top-4 right-4 z-50 sm:top-6 sm:right-6"
-        style={{ 
-          backgroundColor: useTransform(scrollY, [0, 100], ['transparent', 'rgba(248, 248, 246, 0.95)']),
-          scale: navbarScale,
-          y: navbarY,
-          boxShadow: useTransform(scrollY, [0, 100], ['none', `0 10px 30px rgba(31, 81, 68, 0.3)`]),
-          borderColor: useTransform(scrollY, [0, 100], ['transparent', 'rgba(31, 81, 68, 0.15)'])
-        }}
-        transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-      >
-        <div className="flex flex-col items-end gap-3 sm:gap-4">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-transparent">
+        <div className="flex justify-end p-4 sm:p-6">
+          {/* Desktop Navigation */}
           <motion.div 
             className="hidden lg:flex flex-col items-end gap-5 p-6 rounded-xl"
             style={{backgroundColor: 'transparent', borderColor: 'transparent'}}
@@ -116,108 +102,100 @@ export default function Navbar() {
             initial="hidden"
             animate="visible"
           >
-                {[
-                  { name: 'Work', section: 'portfolio' },
-                  { name: 'What We Do', section: 'services' },
-                  { name: 'Industries', section: 'industries' },
-                  { name: 'Contact', section: 'contact' }
-                ].map((item, i) => (
-                  <motion.button
-                    key={item.name}
-                    custom={i}
-                    variants={desktopLinkVariants}
-                    onClick={() => scrollToSection(item.section)}
-                    className="text-xl font-medium tracking-wider relative overflow-hidden group text-left py-1"
-                    style={{color: '#1F5144', letterSpacing: '0.05em'}}
-                    whileHover={{ 
-                      x: 6,
-                      color: '#369c82',
-                      scale: 1.05
-                    }}
-                    whileTap={{ scale: 0.95 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <motion.div
-                      className="absolute bottom-0 left-0 w-full h-0.5 bg-teal-500 origin-left"
-                      initial={{ scaleX: 0 }}
-                      whileHover={{ scaleX: 1 }}
-                      transition={{ duration: 0.3 }}
-                    />
-                    <motion.div
-                      className="absolute inset-0 bg-teal-500 opacity-0 group-hover:opacity-10 blur-md"
-                      initial={false}
-                      animate={{ scale: [1, 1.2, 1] }}
-                      transition={{ duration: 0.6, repeat: Infinity }}
-                    />
-                    {item.name}
-                  </motion.button>
-                ))}
-              </motion.div>
-
-              <motion.button
-                onClick={() => setIsMenuOpen((current) => !current)}
-                className="lg:hidden px-4 py-3 rounded-xl font-medium tracking-wider relative"
-                style={{color: '#1F5144', letterSpacing: '0.05em', backgroundColor: 'transparent'}}
-                whileHover={{ 
-                  scale: 1.03,
-                  color: '#369c82'
-                }}
-                whileTap={{ scale: 0.9 }}
-                transition={{ duration: 0.2 }}
-                aria-expanded={isMenuOpen}
-                aria-label="Toggle navigation menu"
+            {navLinks.map((item, i) => (
+              <motion.div
+                key={item.name}
+                custom={i}
+                variants={desktopLinkVariants}
               >
-                <motion.div
-                  className="flex flex-col gap-1"
+                <Link
+                  href={item.href}
+                  className="text-xl font-medium tracking-wider relative overflow-hidden group text-left py-1 block"
+                  style={{color: '#1F5144', letterSpacing: '0.05em'}}
+                  onClick={() => setIsMenuOpen(false)}
                 >
-                  <motion.div 
-                    className="w-6 h-0.5 bg-current"
-                    animate={isMenuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
-                    transition={{ duration: 0.2 }}
+                  <motion.div
+                    className="absolute bottom-0 left-0 w-full h-0.5 bg-teal-500 origin-left"
+                    initial={{ scaleX: 0 }}
+                    whileHover={{ scaleX: 1 }}
+                    transition={{ duration: 0.3 }}
                   />
-                  <motion.div 
-                    className="w-6 h-0.5 bg-current"
-                    animate={isMenuOpen ? { opacity: 0 } : { opacity: 1 }}
-                    transition={{ duration: 0.2 }}
+                  <motion.div
+                    className="absolute inset-0 bg-teal-500 opacity-0 group-hover:opacity-10 blur-md"
+                    initial={false}
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 0.6, repeat: Infinity }}
                   />
-                  <motion.div 
-                    className="w-6 h-0.5 bg-current"
-                    animate={isMenuOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
-                    transition={{ duration: 0.2 }}
-                  />
-                </motion.div>
-              </motion.button>
-            </div>
-          </motion.nav>
+                  {item.name}
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
 
+          {/* Mobile Menu Button */}
+          <motion.button
+            onClick={() => setIsMenuOpen((current) => !current)}
+            className="lg:hidden px-4 py-3 rounded-xl font-medium tracking-wider relative"
+            style={{color: '#1F5144', letterSpacing: '0.05em', backgroundColor: 'transparent'}}
+            whileHover={{ 
+              scale: 1.03,
+              color: '#369c82'
+            }}
+            whileTap={{ scale: 0.9 }}
+            transition={{ duration: 0.2 }}
+            aria-expanded={isMenuOpen}
+            aria-label="Toggle navigation menu"
+          >
+            <motion.div className="flex flex-col gap-1">
+              <motion.div 
+                className="w-6 h-0.5 bg-current"
+                animate={isMenuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
+                transition={{ duration: 0.2 }}
+              />
+              <motion.div 
+                className="w-6 h-0.5 bg-current"
+                animate={isMenuOpen ? { opacity: 0 } : { opacity: 1 }}
+                transition={{ duration: 0.2 }}
+              />
+              <motion.div 
+                className="w-6 h-0.5 bg-current"
+                animate={isMenuOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
+                transition={{ duration: 0.2 }}
+              />
+            </motion.div>
+          </motion.button>
+        </div>
+      </nav>
+
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isMenuOpen ? (
           <motion.div
-            className="absolute inset-x-4 top-20 z-40 lg:hidden rounded-2xl border p-5"
-            style={{ backgroundColor: '#F8F8F6', borderColor: '#D8D3CC' }}
+            className="fixed inset-x-4 top-20 z-40 lg:hidden rounded-2xl border p-5 bg-[#F8F8F6]"
+            style={{ borderColor: '#D8D3CC' }}
             variants={mobileMenuVariants}
             initial="hidden"
             animate="visible"
             exit="exit"
           >
             <div className="flex flex-col gap-3">
-              {[
-                { name: 'Work', section: 'portfolio' },
-                { name: 'What We Do', section: 'services' },
-                { name: 'Contact', section: 'contact' },
-              ].map((item, index) => (
-                <motion.button
+              {navLinks.map((item, index) => (
+                <motion.div
                   key={item.name}
                   custom={index}
                   variants={mobileMenuItemVariants}
                   initial="hidden"
                   animate="visible"
-                  className="text-left rounded-lg px-3 py-2 text-base font-medium"
-                  style={{ color: '#1F5144' }}
-                  onClick={() => scrollToSection(item.section)}
                 >
-                  {item.name}
-                </motion.button>
+                  <Link
+                    href={item.href}
+                    className="text-left rounded-lg px-3 py-2 text-base font-medium block w-full"
+                    style={{ color: '#1F5144' }}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                </motion.div>
               ))}
             </div>
           </motion.div>

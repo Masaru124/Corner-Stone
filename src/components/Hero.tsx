@@ -2,18 +2,11 @@
 
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import Navbar from '@/components/Navbar'
+import Link from 'next/link'
 
 export default function Hero() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true })
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
 
   // Enhanced animation variants
   const containerVariants = {
@@ -75,7 +68,6 @@ export default function Hero() {
 
   return (
     <section id="hero" ref={ref} className="relative min-h-screen pb-16 pt-24 sm:pt-28 lg:pt-12" style={{backgroundColor: '#F8F8F6'}}>
-      <Navbar />
 
       {/* Animated background elements */}
       <motion.div 
@@ -180,32 +172,33 @@ export default function Hero() {
             >
               {/* Left buttons */}
               <div className="flex w-full sm:w-auto flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-start">
-                <motion.button
-                  onClick={() => scrollToSection('contact')}
-                  className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 text-white font-medium rounded-full text-base sm:text-lg relative overflow-hidden group"
-                  style={{backgroundColor: '#1F5144'}}
-                  whileHover={{ 
-                    scale: 1.05,
-                    backgroundColor: '#369c82',
-                    boxShadow: "0 20px 40px rgba(31, 81, 68, 0.3)"
-                  }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-                >
-                  {/* Button ripple effect */}
-                  <motion.span
-                    className="absolute inset-0 bg-white opacity-0"
-                    animate={{ x: ["-100%", "100%"] }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                  />
-                  <motion.span
-                    className="relative z-10"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.2 }}
+                <Link href="/contact">
+                  <motion.button
+                    className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 text-white font-medium rounded-full text-base sm:text-lg relative overflow-hidden group"
+                    style={{backgroundColor: '#1F5144'}}
+                    whileHover={{ 
+                      scale: 1.05,
+                      backgroundColor: '#369c82',
+                      boxShadow: "0 20px 40px rgba(31, 81, 68, 0.3)"
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
                   >
-                    Book a Discovery Call
-                  </motion.span>
-                </motion.button>
+                    {/* Button ripple effect */}
+                    <motion.span
+                      className="absolute inset-0 bg-white opacity-0"
+                      animate={{ x: ["-100%", "100%"] }}
+                      transition={{ duration: 0.8, ease: "easeOut" }}
+                    />
+                    <motion.span
+                      className="relative z-10"
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      Book a Discovery Call
+                    </motion.span>
+                  </motion.button>
+                </Link>
               </div>
 
               <motion.div className="ml-0 sm:ml-auto shrink-0 self-start sm:self-center">

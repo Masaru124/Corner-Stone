@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cornerstonemedia.in/sitemap.xml
+
+# Disallow admin paths
+Disallow: /admin
+Disallow: /admin/dashboard
+Disallow: /api/
