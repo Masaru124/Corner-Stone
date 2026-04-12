@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { listResources } from '@/lib/resources'
 import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
@@ -17,60 +18,14 @@ export const metadata: Metadata = {
   },
 }
 
-const resources = [
-  {
-    title: 'The Complete Brand Strategy Guide for Indian Businesses',
-    description: 'Learn how to build a powerful brand identity that resonates with your target audience. Covers positioning, messaging, and visual identity.',
-    category: 'Branding',
-    readTime: '15 min read',
-    href: '#brand-strategy-guide',
-    featured: true,
-  },
-  {
-    title: 'Social Media Marketing Playbook 2025',
-    description: 'Comprehensive playbook for Instagram, LinkedIn, and emerging platforms. Content calendars, engagement tactics, and growth strategies.',
-    category: 'Social Media',
-    readTime: '20 min read',
-    href: '#social-media-playbook',
-    featured: true,
-  },
-  {
-    title: 'Website Design Checklist for Conversions',
-    description: 'Essential checklist for designing websites that convert visitors into customers. UX best practices and CRO techniques.',
-    category: 'Web Design',
-    readTime: '10 min read',
-    href: '#website-checklist',
-    featured: false,
-  },
-  {
-    title: 'SEO Fundamentals for Small Businesses',
-    description: 'Practical SEO guide covering keyword research, on-page optimization, and local SEO strategies for Indian businesses.',
-    category: 'SEO',
-    readTime: '12 min read',
-    href: '#seo-guide',
-    featured: false,
-  },
-  {
-    title: 'Content Marketing ROI Calculator',
-    description: 'Free downloadable template to calculate your content marketing ROI. Includes metrics tracking and analysis framework.',
-    category: 'Templates',
-    readTime: 'Template',
-    href: '#roi-calculator',
-    featured: false,
-  },
-  {
-    title: 'Brand Identity Toolkit',
-    description: 'Essential templates and frameworks for developing your brand identity. Logo guidelines, color palette tools, and brand voice framework.',
-    category: 'Templates',
-    readTime: 'Toolkit',
-    href: '#brand-toolkit',
-    featured: false,
-  },
-]
+const allCategories = ['All', 'Branding', 'Social Media', 'Web Design', 'SEO', 'Templates', 'General']
 
-const categories = ['All', 'Branding', 'Social Media', 'Web Design', 'SEO', 'Templates']
-
-export default function ResourcesPage() {
+export default async function ResourcesPage() {
+  const resources = await listResources(false)
+  const featuredResources = resources.filter(r => r.featured)
+  const regularResources = resources.filter(r => !r.featured)
+  const categories = [...new Set(resources.map(r => r.category))]
+  
   return (
     <div className="min-h-screen bg-white">
       {/* Page Header */}
@@ -83,7 +38,7 @@ export default function ResourcesPage() {
             Expert insights, templates, and guides to help you master digital marketing and grow your brand.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
-            {categories.map((category) => (
+            {allCategories.map((category) => (
               <button
                 key={category}
                 className="px-4 py-2 rounded-full text-sm font-medium transition-colors border hover:shadow-md"
@@ -101,16 +56,17 @@ export default function ResourcesPage() {
       </section>
 
       {/* Featured Resources */}
+      {featuredResources.length > 0 && (
       <section className="py-16 px-6 sm:px-8 lg:px-12">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-bold mb-8" style={{ color: '#1F5144' }}>
             Featured Resources
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {resources.filter(r => r.featured).map((resource) => (
+            {featuredResources.map((resource) => (
               <Link
-                key={resource.title}
-                href={resource.href}
+                key={resource.id}
+                href={`/resources/${resource.slug}`}
                 className="group block p-8 rounded-2xl border transition-all duration-300 hover:shadow-xl"
                 style={{ borderColor: '#D8D3CC', backgroundColor: 'white' }}
               >
@@ -121,7 +77,7 @@ export default function ResourcesPage() {
                   >
                     {resource.category}
                   </span>
-                  <span className="text-sm" style={{ color: '#999' }}>{resource.readTime}</span>
+                  <span className="text-sm" style={{ color: '#999' }}>{resource.read_time}</span>
                 </div>
                 <h3 
                   className="text-xl sm:text-2xl font-bold mb-3 group-hover:text-[#369c82] transition-colors"
@@ -141,6 +97,7 @@ export default function ResourcesPage() {
           </div>
         </div>
       </section>
+      )}
 
       {/* All Resources */}
       <section className="py-16 px-6 sm:px-8 lg:px-12" style={{ backgroundColor: '#F8F8F6' }}>
@@ -149,10 +106,10 @@ export default function ResourcesPage() {
             All Resources
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {resources.filter(r => !r.featured).map((resource) => (
+            {regularResources.map((resource) => (
               <Link
-                key={resource.title}
-                href={resource.href}
+                key={resource.id}
+                href={`/resources/${resource.slug}`}
                 className="group block p-6 rounded-xl border transition-all duration-300 hover:shadow-lg"
                 style={{ borderColor: '#D8D3CC', backgroundColor: 'white' }}
               >
@@ -174,7 +131,7 @@ export default function ResourcesPage() {
                   {resource.description}
                 </p>
                 <div className="flex items-center justify-between">
-                  <span className="text-xs" style={{ color: '#999' }}>{resource.readTime}</span>
+                  <span className="text-xs" style={{ color: '#999' }}>{resource.read_time}</span>
                   <span className="text-sm font-medium group-hover:translate-x-1 transition-transform" style={{ color: '#369c82' }}>
                     Read →
                   </span>
@@ -182,6 +139,11 @@ export default function ResourcesPage() {
               </Link>
             ))}
           </div>
+          {resources.length === 0 && (
+            <p className="text-center" style={{ color: '#666' }}>
+              No resources available yet. Check back soon!
+            </p>
+          )}
         </div>
       </section>
 

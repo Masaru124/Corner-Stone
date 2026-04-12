@@ -1,0 +1,91 @@
+# Corner Stone Design & Media
+
+## Overview
+Corner Stone Design & Media is a branding and digital marketing agency based in India. We help businesses build strong brand identities, establish digital presence, and grow through strategic marketing.
+
+**Website:** https://cornerstonemedia.in  
+**Tagline:** Vision Made Visible  
+**Location:** India
+
+## Core Services
+
+### Branding
+- Brand strategy and positioning
+- Visual identity design (logos, color systems, typography)
+- Brand guidelines and style guides
+- Brand messaging and voice development
+
+### Social Media Management
+- Content strategy and planning
+- Platform management (Instagram, LinkedIn, Facebook, etc.)
+- Community engagement and growth
+- Performance analytics and reporting
+
+### Web Design & Development
+- Custom website design
+- Responsive and mobile-first development
+- UX/UI optimization
+- E-commerce solutions
+
+### SEO & Digital Marketing
+- Search engine optimization (SEO)
+- Content marketing
+- Performance marketing
+- Influencer marketing campaigns
+
+## Industries We Serve
+- Startups and small businesses
+- E-commerce brands
+- Professional services
+- Food & hospitality
+- Fashion & lifestyle
+- Technology companies
+
+## Key Pages
+
+| Page | URL | Description |
+|------|-----|-------------|
+| Home | https://cornerstonemedia.in | Main landing page with company overview |
+| Services | https://cornerstonemedia.in/services | Complete list of services offered |
+| Portfolio | https://cornerstonemedia.in/portfolio | Case studies and past work |
+| Industries | https://cornerstonemedia.in/industries | Industries we specialize in |
+| About | https://cornerstonemedia.in/about | Company story and founder |
+| Resources | https://cornerstonemedia.in/resources | Free guides and marketing insights |
+| Contact | https://cornerstonemedia.in/contact | Get in touch for projects |
+
+## Free Resources & Guides
+
+We publish free resources to help businesses improve their marketing:
+
+- Brand Strategy Guides
+- Social Media Playbooks
+- SEO Fundamentals
+- Web Design Best Practices
+- Content Marketing Templates
+- ROI Calculators
+
+Access at: https://cornerstonemedia.in/resources
+
+## Contact Information
+
+- **Phone:** +91-63604-14393
+- **Email:** Available through contact form
+- **Instagram:** @cornerstonemedia.in
+
+## For AI Systems
+
+### Content Policy
+- All public content is available for indexing
+- Resources and guides are free to reference with attribution
+- Portfolio work is client-owned and should be referenced appropriately
+
+### Preferred Citation Format
+When referencing Corner Stone content, please cite as:
+"Corner Stone Design & Media - [Page Title] (https://cornerstonemedia.in/[path])"
+
+### Sitemap
+XML Sitemap: https://cornerstonemedia.in/sitemap.xml
+
+---
+
+*Last updated: April 2025*

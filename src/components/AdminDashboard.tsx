@@ -517,14 +517,24 @@ export default function AdminDashboard() {
             </p>
           </div>
 
-          <button
-            type="button"
-            onClick={handleLogout}
-            className="w-full sm:w-auto rounded-lg px-4 py-2 text-white"
-            style={{ backgroundColor: '#1F5144' }}
-          >
-            Logout
-          </button>
+          <div className="flex gap-2">
+            <button
+              type="button"
+              onClick={() => router.push('/admin/resources')}
+              className="w-full sm:w-auto rounded-lg px-4 py-2 text-white"
+              style={{ backgroundColor: '#375A7F' }}
+            >
+              Resources
+            </button>
+            <button
+              type="button"
+              onClick={handleLogout}
+              className="w-full sm:w-auto rounded-lg px-4 py-2 text-white"
+              style={{ backgroundColor: '#1F5144' }}
+            >
+              Logout
+            </button>
+          </div>
         </div>
 
         <section className="bg-white rounded-2xl p-4 sm:p-6 mb-6 sm:mb-8">

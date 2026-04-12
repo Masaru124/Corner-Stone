@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
+import ConditionalNavbar from "@/components/ConditionalNavbar";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
@@ -17,7 +17,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Corner Stone Design & Media | Vision Made Visible",
+  title: "Corner Stone Design & Media | Branding & Digital Marketing",
   description: "The Studio Behind Brands That Get Noticed. Brand strategy, visual identity, social media management, and web development services.",
   keywords: ["branding", "social media management", "web design", "SEO", "digital marketing", "brand strategy", "visual identity", "India"],
   authors: [{ name: "Corner Stone Design & Media" }],
@@ -116,7 +116,7 @@ export default function RootLayout({
       <body
         className={`${cormorant.variable} ${dmSans.variable} antialiased`}
       >
-        <Navbar />
+        <ConditionalNavbar />
         {children}
       </body>
     </html>
