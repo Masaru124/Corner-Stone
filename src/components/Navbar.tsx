@@ -8,7 +8,7 @@ const navLinks = [
   { name: 'Home', href: '/' },
   { name: 'Services', href: '/services' },
   { name: 'Work', href: '/portfolio' },
-  { name: 'Industries', href: '/industries' },
+  { name: 'Resources', href: '/resources' },
   { name: 'About', href: '/about' },
   { name: 'Contact', href: '/contact' },
 ]
@@ -92,7 +92,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-transparent">
+      <nav className="absolute top-0 left-0 right-0 z-50 bg-transparent">
         <div className="flex justify-end p-4 sm:p-6">
           {/* Desktop Navigation */}
           <motion.div 
