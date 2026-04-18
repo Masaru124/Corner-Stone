@@ -25,18 +25,18 @@ export const metadata: Metadata = {
   publisher: "Corner Stone Design & Media",
   robots: "index, follow",
   alternates: {
-    canonical: "https://cornerstonemedia.in",
+    canonical: "https://www.cornerstonemedia.in/",
   },
   openGraph: {
     title: "Corner Stone Design & Media | Vision Made Visible",
     description: "The Studio Behind Brands That Get Noticed. Brand strategy, visual identity, social media management, and web development services.",
-    url: "https://cornerstonemedia.in",
+    url: "https://www.cornerstonemedia.in/",
     siteName: "Corner Stone Design & Media",
     locale: "en_IN",
     type: "website",
     images: [
       {
-        url: "https://cornerstonemedia.in/Logo%20Kit%20-%20CNRSTN/Cornerstone%20Secondary%20Logo%20Green.png",
+        url: "https://www.cornerstonemedia.in/Logo%20Kit%20-%20CNRSTN/Cornerstone%20Secondary%20Logo%20Green.png",
         width: 1200,
         height: 630,
         alt: "Corner Stone Design & Media - Vision Made Visible",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Corner Stone Design & Media | Vision Made Visible",
     description: "The Studio Behind Brands That Get Noticed. Brand strategy, visual identity, social media management, and web development services.",
-    images: ["https://cornerstonemedia.in/Logo%20Kit%20-%20CNRSTN/Cornerstone%20Secondary%20Logo%20Green.png"],
+    images: ["https://www.cornerstonemedia.in/Logo%20Kit%20-%20CNRSTN/Cornerstone%20Secondary%20Logo%20Green.png"],
   },
   icons: {
     icon: '/Logo Kit - CNRSTN/Cornerstone Icon White.png',
@@ -85,8 +85,8 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Organization",
               name: "Corner Stone Design & Media",
-              url: "https://cornerstonemedia.in",
-              logo: "https://cornerstonemedia.in/Logo%20Kit%20-%20CNRSTN/Cornerstone%20Secondary%20Logo%20Green.png",
+              url: "https://www.cornerstonemedia.in/",
+              logo: "https://www.cornerstonemedia.in/Logo%20Kit%20-%20CNRSTN/Cornerstone%20Secondary%20Logo%20Green.png",
               description: "The Studio Behind Brands That Get Noticed. Brand strategy, visual identity, social media management, and web development services.",
               address: {
                 "@type": "PostalAddress",

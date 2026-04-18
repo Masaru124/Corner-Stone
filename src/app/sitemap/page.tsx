@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: 'Complete sitemap of Corner Stone Design & Media. Find all our pages including services, portfolio, resources, and more.',
   keywords: ['sitemap', 'site map', 'all pages', 'corner stone pages', 'website navigation'],
   alternates: {
-    canonical: 'https://cornerstonemedia.in/sitemap',
+    canonical: 'https://www.cornerstonemedia.in/sitemap/',
   },
   robots: {
     index: true,
