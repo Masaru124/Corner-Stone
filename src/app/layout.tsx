@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     apple: '/Logo Kit - CNRSTN/Cornerstone Icon White.png',
   },
   verification: {
-    google: "G-PWL0NKFD5B",
+    google: "mX_GiulAQhSziIja8BsWTTiB-lcEKoJsH2Gq36WFOdI",
   },
 };
 
