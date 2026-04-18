@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   description: 'Explore our portfolio of brand identity, web design, and digital marketing projects that helped businesses grow and succeed.',
   keywords: ['portfolio', 'brand design', 'case studies', 'web design projects', 'branding examples', 'digital marketing portfolio'],
   alternates: {
-    canonical: 'https://cornerstonemedia.in/portfolio',
+    canonical: 'https://cornerstonemedia.co.in/portfolio',
   },
   openGraph: {
     title: 'Our Work - Brand Portfolio & Case Studies | Corner Stone',
     description: 'Explore our portfolio of brand identity, web design, and digital marketing projects that helped businesses grow and succeed.',
-    url: 'https://cornerstonemedia.in/portfolio',
+    url: 'https://cornerstonemedia.co.in/portfolio',
     type: 'website',
   },
 }

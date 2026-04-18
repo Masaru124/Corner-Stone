@@ -7,12 +7,12 @@ export const metadata: Metadata = {
   description: 'Ready to elevate your brand? Contact us for branding, web design, and digital marketing services. Let us discuss how we can help your business grow.',
   keywords: ['contact us', 'get in touch', 'branding inquiry', 'web design quote', 'digital marketing consultation', 'hire design agency'],
   alternates: {
-    canonical: 'https://cornerstonemedia.in/contact',
+    canonical: 'https://cornerstonemedia.co.in/contact',
   },
   openGraph: {
     title: 'Contact Us - Get In Touch | Corner Stone Design & Media',
     description: 'Ready to elevate your brand? Contact us for branding, web design, and digital marketing services. Let us discuss how we can help your business grow.',
-    url: 'https://cornerstonemedia.in/contact',
+    url: 'https://cornerstonemedia.co.in/contact',
     type: 'website',
   },
 }

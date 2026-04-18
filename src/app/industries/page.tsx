@@ -7,12 +7,12 @@ export const metadata: Metadata = {
   description: 'We work with businesses across various industries including education, healthcare, real estate, and D2C brands to create impactful brand experiences.',
   keywords: ['industries served', 'education marketing', 'healthcare branding', 'real estate marketing', 'D2C brands', 'e-commerce branding'],
   alternates: {
-    canonical: 'https://cornerstonemedia.in/industries',
+    canonical: 'https://cornerstonemedia.co.in/industries',
   },
   openGraph: {
     title: 'Industries We Serve | Corner Stone Design & Media',
     description: 'We work with businesses across various industries including education, healthcare, real estate, and D2C brands to create impactful brand experiences.',
-    url: 'https://cornerstonemedia.in/industries',
+    url: 'https://cornerstonemedia.co.in/industries',
     type: 'website',
   },
 }

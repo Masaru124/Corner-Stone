@@ -25,18 +25,18 @@ export const metadata: Metadata = {
   publisher: "Corner Stone Design & Media",
   robots: "index, follow",
   alternates: {
-    canonical: "https://www.cornerstonemedia.in/",
+    canonical: "https://www.cornerstonemedia.co.in/",
   },
   openGraph: {
     title: "Corner Stone Design & Media | Vision Made Visible",
     description: "The Studio Behind Brands That Get Noticed. Brand strategy, visual identity, social media management, and web development services.",
-    url: "https://www.cornerstonemedia.in/",
+    url: "https://www.cornerstonemedia.co.in/",
     siteName: "Corner Stone Design & Media",
     locale: "en_IN",
     type: "website",
     images: [
       {
-        url: "https://www.cornerstonemedia.in/Logo%20Kit%20-%20CNRSTN/Cornerstone%20Secondary%20Logo%20Green.png",
+        url: "https://www.cornerstonemedia.co.in/Logo%20Kit%20-%20CNRSTN/Cornerstone%20Secondary%20Logo%20Green.png",
         width: 1200,
         height: 630,
         alt: "Corner Stone Design & Media - Vision Made Visible",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Corner Stone Design & Media | Vision Made Visible",
     description: "The Studio Behind Brands That Get Noticed. Brand strategy, visual identity, social media management, and web development services.",
-    images: ["https://www.cornerstonemedia.in/Logo%20Kit%20-%20CNRSTN/Cornerstone%20Secondary%20Logo%20Green.png"],
+    images: ["https://www.cornerstonemedia.co.in/Logo%20Kit%20-%20CNRSTN/Cornerstone%20Secondary%20Logo%20Green.png"],
   },
   icons: {
     icon: '/Logo Kit - CNRSTN/Cornerstone Icon White.png',
@@ -85,8 +85,8 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Organization",
               name: "Corner Stone Design & Media",
-              url: "https://www.cornerstonemedia.in/",
-              logo: "https://www.cornerstonemedia.in/Logo%20Kit%20-%20CNRSTN/Cornerstone%20Secondary%20Logo%20Green.png",
+              url: "https://www.cornerstonemedia.co.in/",
+              logo: "https://www.cornerstonemedia.co.in/Logo%20Kit%20-%20CNRSTN/Cornerstone%20Secondary%20Logo%20Green.png",
               description: "The Studio Behind Brands That Get Noticed. Brand strategy, visual identity, social media management, and web development services.",
               address: {
                 "@type": "PostalAddress",
@@ -99,7 +99,7 @@ export default function RootLayout({
                 availableLanguage: ["English", "Hindi"],
               },
               sameAs: [
-                "https://www.instagram.com/cornerstonemedia.in",
+                "https://www.instagram.com/cornerstonemedia.co.in",
               ],
               serviceType: [
                 "Branding",

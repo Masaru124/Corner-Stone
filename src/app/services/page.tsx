@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   description: 'Comprehensive digital marketing services including branding, social media management, web design, SEO, performance marketing, and influencer collaborations.',
   keywords: ['branding services', 'web design', 'SEO services', 'social media management', 'digital marketing India', 'brand strategy'],
   alternates: {
-    canonical: 'https://cornerstonemedia.in/services',
+    canonical: 'https://cornerstonemedia.co.in/services',
   },
   openGraph: {
     title: 'Our Services - Branding, Web Design, SEO & More | Corner Stone',
     description: 'Comprehensive digital marketing services including branding, social media management, web design, SEO, performance marketing, and influencer collaborations.',
-    url: 'https://cornerstonemedia.in/services',
+    url: 'https://cornerstonemedia.co.in/services',
     type: 'website',
   },
 }

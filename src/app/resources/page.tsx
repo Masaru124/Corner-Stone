@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   description: 'Free guides, templates, and insights on branding, social media, web design, and digital marketing. Expert resources to help your business grow.',
   keywords: ['digital marketing guide', 'branding tips', 'social media strategy', 'web design best practices', 'SEO guide', 'marketing resources'],
   alternates: {
-    canonical: 'https://cornerstonemedia.in/resources',
+    canonical: 'https://cornerstonemedia.co.in/resources',
   },
   openGraph: {
     title: 'Resources & Guides - Digital Marketing Insights | Corner Stone',
     description: 'Free guides, templates, and insights on branding, social media, web design, and digital marketing. Expert resources to help your business grow.',
-    url: 'https://cornerstonemedia.in/resources',
+    url: 'https://cornerstonemedia.co.in/resources',
     type: 'website',
   },
 }
@@ -48,7 +48,7 @@ export default async function ResourcesPage() {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="https://twitter.com/intent/tweet?text=Free digital marketing guides and resources&url=https://cornerstonemedia.in/resources"
+              href="https://twitter.com/intent/tweet?text=Free digital marketing guides and resources&url=https://cornerstonemedia.co.in/resources"
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-3 rounded-full border transition-colors hover:shadow-md"
@@ -57,7 +57,7 @@ export default async function ResourcesPage() {
               Share on Twitter
             </a>
             <a
-              href="https://www.linkedin.com/sharing/share-offsite/?url=https://cornerstonemedia.in/resources"
+              href="https://www.linkedin.com/sharing/share-offsite/?url=https://cornerstonemedia.co.in/resources"
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-3 rounded-full border transition-colors hover:shadow-md"
@@ -66,7 +66,7 @@ export default async function ResourcesPage() {
               Share on LinkedIn
             </a>
             <a
-              href="https://www.facebook.com/sharer/sharer.php?u=https://cornerstonemedia.in/resources"
+              href="https://www.facebook.com/sharer/sharer.php?u=https://cornerstonemedia.co.in/resources"
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-3 rounded-full border transition-colors hover:shadow-md"

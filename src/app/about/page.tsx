@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   description: 'Learn about Corner Stone Design & Media and our founders vision for helping brands get noticed through strategic design and digital marketing.',
   keywords: ['about us', 'founder', 'company story', 'design agency India', 'brand agency', 'Wilson Corner Stone'],
   alternates: {
-    canonical: 'https://cornerstonemedia.in/about',
+    canonical: 'https://cornerstonemedia.co.in/about',
   },
   openGraph: {
     title: 'About Us - Meet the Founder | Corner Stone Design & Media',
     description: 'Learn about Corner Stone Design & Media and our founders vision for helping brands get noticed through strategic design and digital marketing.',
-    url: 'https://cornerstonemedia.in/about',
+    url: 'https://cornerstonemedia.co.in/about',
     type: 'website',
   },
 }

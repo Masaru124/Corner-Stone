@@ -7,12 +7,12 @@ export const metadata: Metadata = {
   description: 'Help us grow by linking to Corner Stone. Find embed codes, badges, and partnership opportunities. Build backlinks together.',
   keywords: ['link to us', 'partnership', 'backlink', 'badge', 'embed code', 'corner stone partner'],
   alternates: {
-    canonical: 'https://cornerstonemedia.in/link-to-us',
+    canonical: 'https://cornerstonemedia.co.in/link-to-us',
   },
   openGraph: {
     title: 'Link to Us - Partner with Corner Stone Design & Media',
     description: 'Help us grow by linking to Corner Stone. Find embed codes, badges, and partnership opportunities.',
-    url: 'https://cornerstonemedia.in/link-to-us',
+    url: 'https://cornerstonemedia.co.in/link-to-us',
     type: 'website',
   },
 }
@@ -21,15 +21,15 @@ const badges = [
   {
     name: 'Standard Badge',
     preview: 'Designed by Corner Stone',
-    code: `<a href="https://cornerstonemedia.in" target="_blank" rel="noopener noreferrer">
+    code: `<a href="https://cornerstonemedia.co.in" target="_blank" rel="noopener noreferrer">
   Designed by Corner Stone
 </a>`,
   },
   {
     name: 'Logo Badge',
     preview: 'Corner Stone Logo',
-    code: `<a href="https://cornerstonemedia.in" target="_blank" rel="noopener noreferrer">
-  <img src="https://cornerstonemedia.in/Logo%20Kit%20-%20CNRSTN/Cornerstone%20Icon%20Green.png" 
+    code: `<a href="https://cornerstonemedia.co.in" target="_blank" rel="noopener noreferrer">
+  <img src="https://cornerstonemedia.co.in/Logo%20Kit%20-%20CNRSTN/Cornerstone%20Icon%20Green.png" 
        alt="Corner Stone Design & Media" 
        width="32" height="32" />
 </a>`,
@@ -37,24 +37,24 @@ const badges = [
   {
     name: 'Text Link',
     preview: 'Digital Marketing by Corner Stone',
-    code: `Digital marketing by <a href="https://cornerstonemedia.in" target="_blank" rel="noopener noreferrer">Corner Stone</a>`,
+    code: `Digital marketing by <a href="https://cornerstonemedia.co.in" target="_blank" rel="noopener noreferrer">Corner Stone</a>`,
   },
 ]
 
 const linkFormats = [
   {
     format: 'HTML Link',
-    code: `<a href="https://cornerstonemedia.in" target="_blank" rel="noopener noreferrer">
+    code: `<a href="https://cornerstonemedia.co.in" target="_blank" rel="noopener noreferrer">
   Corner Stone Design & Media - Vision Made Visible
 </a>`,
   },
   {
     format: 'Markdown',
-    code: `[Corner Stone Design & Media](https://cornerstonemedia.in)`,
+    code: `[Corner Stone Design & Media](https://cornerstonemedia.co.in)`,
   },
   {
     format: 'BBCode',
-    code: `[url=https://cornerstonemedia.in]Corner Stone Design & Media[/url]`,
+    code: `[url=https://cornerstonemedia.co.in]Corner Stone Design & Media[/url]`,
   },
 ]
 

@@ -26,12 +26,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     description: resource.description,
     keywords: [resource.category, 'guide', 'resource', 'corner stone', resource.title.toLowerCase()],
     alternates: {
-      canonical: `https://cornerstonemedia.in/resources/${resource.slug}`,
+      canonical: `https://cornerstonemedia.co.in/resources/${resource.slug}`,
     },
     openGraph: {
       title: resource.title,
       description: resource.description,
-      url: `https://cornerstonemedia.in/resources/${resource.slug}`,
+      url: `https://cornerstonemedia.co.in/resources/${resource.slug}`,
       type: 'article',
     },
   }
@@ -117,7 +117,7 @@ export default async function ResourceDetailPage({ params }: { params: Promise<{
             </h3>
             <div className="flex flex-wrap gap-3">
               <a
-                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(resource.title)}&url=https://cornerstonemedia.in/resources/${resource.slug}`}
+                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(resource.title)}&url=https://cornerstonemedia.co.in/resources/${resource.slug}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-4 py-2 rounded-full border text-sm transition-colors hover:shadow-md"
@@ -126,7 +126,7 @@ export default async function ResourceDetailPage({ params }: { params: Promise<{
                 Twitter
               </a>
               <a
-                href={`https://www.linkedin.com/sharing/share-offsite/?url=https://cornerstonemedia.in/resources/${resource.slug}`}
+                href={`https://www.linkedin.com/sharing/share-offsite/?url=https://cornerstonemedia.co.in/resources/${resource.slug}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-4 py-2 rounded-full border text-sm transition-colors hover:shadow-md"
@@ -135,7 +135,7 @@ export default async function ResourceDetailPage({ params }: { params: Promise<{
                 LinkedIn
               </a>
               <a
-                href={`https://www.facebook.com/sharer/sharer.php?u=https://cornerstonemedia.in/resources/${resource.slug}`}
+                href={`https://www.facebook.com/sharer/sharer.php?u=https://cornerstonemedia.co.in/resources/${resource.slug}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-4 py-2 rounded-full border text-sm transition-colors hover:shadow-md"
