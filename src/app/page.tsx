@@ -77,6 +77,17 @@ export default function Home() {
       </section>
       
       <GrowthNumbers />
+      
+      {/* SEO Keyword Variation */}
+      <section className="py-8 px-6 sm:px-8 lg:px-12" style={{ backgroundColor: '#F8F8F6' }}>
+        <div className="max-w-4xl mx-auto text-center">
+          <p className="text-sm" style={{ color: '#888' }}>
+            Corner Stone Design & Media (also known as CornerstoneMedia) is a digital marketing agency 
+            helping brands grow through strategic branding, web design, and social media management.
+          </p>
+        </div>
+      </section>
+      
       <Footer />
     </div>
   )
